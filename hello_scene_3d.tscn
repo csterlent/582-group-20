@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpprydr1rpo8s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_02tvu"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_02tvu")
+disabled = true
