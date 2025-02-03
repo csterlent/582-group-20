@@ -1,16 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=4 format=3 uid="uid://cpprydr1rpo8s"]
+
+[ext_resource type="Script" path="res://controller.gd" id="1_6lv17"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_02tvu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4qfb"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Scene" type="Node3D"]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.516, 0, -0.113)
+gravity_scale = 0.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
 shape = SubResource("BoxShape3D_02tvu")
 disabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
+transform = Transform3D(0.891783, -5.90053e-05, 0.450368, 0.000611994, 0.127173, -0.000183564, -0.450367, 5.59755e-05, 0.891783, 0, 0, 0)
 mesh = SubResource("BoxMesh_j4qfb")
+skeleton = NodePath("../../RigidBody3D2")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65224, 0, 2.74036)
+script = ExtResource("1_6lv17")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_02tvu")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("BoxMesh_j4qfb")
+skeleton = NodePath("")
+
+[connection signal="input_event" from="Player" to="Player" method="_on_input_event"]
