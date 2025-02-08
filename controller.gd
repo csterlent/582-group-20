@@ -5,7 +5,6 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# We create a local variable to store the input direction.
 	var input_x:float
 	var input_y:float
@@ -20,7 +19,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_forward"):
 		input_y -= 1
 		
-	velocity = (transform.basis * Vector3(input_x, 0, input_y)).normalized()
+	velocity = 10 * (transform.basis * Vector3(input_x, 0, input_y)).normalized()
 	move_and_slide()
 
 @onready var camera = get_node("Camera3D")

@@ -1,38 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=10 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_6lv17"]
+[ext_resource type="PackedScene" uid="uid://cjfk35hyysi2k" path="res://models/tower/tower.gltf" id="2_2ymrd"]
+[ext_resource type="Texture2D" uid="uid://dc6lfdsw4mues" path="res://fading_sky-sunset_02-1024x512.png" id="3_hn2p2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cj6n3"]
+size = Vector3(1, 0.12, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j4qfb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_02tvu"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_j4qfb"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l83k4"]
+panorama = ExtResource("3_hn2p2")
+
+[sub_resource type="Sky" id="Sky_yo54g"]
+sky_material = SubResource("PanoramaSkyMaterial_l83k4")
+
+[sub_resource type="Environment" id="Environment_fc5si"]
+background_mode = 2
+sky = SubResource("Sky_yo54g")
+ambient_light_color = Color(0.74902, 0.717647, 0.807843, 1)
+ambient_light_sky_contribution = 0.1
+tonemap_mode = 2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0001
 
 [node name="Scene" type="Node3D"]
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.516, 0, -0.113)
+transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, -2.516, 0, -0.113)
 gravity_scale = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
-shape = SubResource("BoxShape3D_02tvu")
-disabled = true
+shape = SubResource("BoxShape3D_cj6n3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
-transform = Transform3D(0.891783, -5.90053e-05, 0.450368, 0.000611994, 0.127173, -0.000183564, -0.450367, 5.59755e-05, 0.891783, 0, 0, 0)
+transform = Transform3D(0.999053, 0, 0, 0, 0.127173, 0, 0, 0, 0.999054, 0, 0, 0)
 mesh = SubResource("BoxMesh_j4qfb")
-skeleton = NodePath("../../RigidBody3D2")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65224, 0, 2.74036)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 16, -32)
 script = ExtResource("1_6lv17")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("BoxShape3D_02tvu")
-disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("BoxMesh_j4qfb")
 skeleton = NodePath("")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.987294, -0.142391, 0.0705401, 0.0155631, 0.528422, 0.848839, -0.158142, -0.836956, 0.523924, 37.5296, 5.72118, -31.3115)
+
+[node name="tower" parent="." instance=ExtResource("2_2ymrd")]
+transform = Transform3D(0.999999, 0.000189752, 0.00117301, -0.000191328, 0.999999, 0.00134886, -0.00117275, -0.00134909, 0.999998, 0, -1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fc5si")
 
 [connection signal="input_event" from="Player" to="Player" method="_on_input_event"]
