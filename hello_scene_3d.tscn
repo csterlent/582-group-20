@@ -1,15 +1,17 @@
 [gd_scene load_steps=10 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_6lv17"]
-[ext_resource type="PackedScene" uid="uid://cjfk35hyysi2k" path="res://models/tower/tower.gltf" id="2_2ymrd"]
 [ext_resource type="Texture2D" uid="uid://dc6lfdsw4mues" path="res://fading_sky-sunset_02-1024x512.png" id="3_hn2p2"]
+[ext_resource type="PackedScene" uid="uid://q47e06p6s1ww" path="res://models/tower/tower.tscn" id="3_mhacm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cj6n3"]
 size = Vector3(1, 0.12, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4qfb"]
+size = Vector3(4, 16, 4)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_02tvu"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tfd85"]
+points = PackedVector3Array(2, 7.4099, 2, -2, -7.64893, -2, -1.93651, -7.4099, 2, -2, 7.64893, -2, 2, -7.4099, -1.93651, -1.93651, 7.4099, 2, 2, 7.4099, -1.93651, 2, -7.4099, 2)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l83k4"]
 panorama = ExtResource("3_hn2p2")
@@ -44,21 +46,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 16, -32)
 script = ExtResource("1_6lv17")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("BoxShape3D_02tvu")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.543491, 0)
 mesh = SubResource("BoxMesh_j4qfb")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("ConvexPolygonShape3D_tfd85")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.987294, -0.142391, 0.0705401, 0.0155631, 0.528422, 0.848839, -0.158142, -0.836956, 0.523924, 37.5296, 5.72118, -31.3115)
 
-[node name="tower" parent="." instance=ExtResource("2_2ymrd")]
-transform = Transform3D(0.999999, 0.000189752, 0.00117301, -0.000191328, 0.999999, 0.00134886, -0.00117275, -0.00134909, 0.999998, 0, -1, 0)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fc5si")
+
+[node name="tower" parent="." instance=ExtResource("3_mhacm")]
 
 [connection signal="input_event" from="Player" to="Player" method="_on_input_event"]
