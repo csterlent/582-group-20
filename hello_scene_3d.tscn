@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=17 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_6lv17"]
-[ext_resource type="Material" uid="uid://2qexsvo1vncf" path="res://models/tower/glass.tres" id="2_n8o2l"]
 [ext_resource type="Texture2D" uid="uid://dc6lfdsw4mues" path="res://fading_sky-sunset_02-1024x512.png" id="3_hn2p2"]
 [ext_resource type="PackedScene" uid="uid://q47e06p6s1ww" path="res://models/tower/tower.tscn" id="3_mhacm"]
 [ext_resource type="PackedScene" uid="uid://bnpu5ahv48bmc" path="res://models/scales/base.gltf" id="4_wbnfn"]
@@ -25,15 +24,11 @@ volumetric_fog_density = 0.0001
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7cox"]
 size = Vector3(4, 16, 4)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fn3tq"]
+friction = 0.0
+
 [sub_resource type="BoxMesh" id="BoxMesh_nnjws"]
 size = Vector3(4, 16, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_t5o3n"]
-material = ExtResource("2_n8o2l")
-size = Vector3(5, 17, 5)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_22byx"]
-points = PackedVector3Array(-2.5, -8.5, -2.5, -2.5, -8.5, 2.5, -2.5, 8.5, -2.5, 2.5, -8.5, -2.5, 2.5, -8.5, 2.5, -2.5, 8.5, 2.5, 2.5, 8.5, -2.5, 2.5, 8.5, 2.5)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4buvy"]
 points = PackedVector3Array(-1, -7, 4, -9.78708e-05, -6.0001, 3, 2, -7, 4, -1, -7, 5, -1, 8, 4, 0.999804, -6.0001, 3, -9.78708e-05, 6.99863, 3, 2, -7, 5, 2, 8, 4, -1, 8, 5, 0.999804, 6.99863, 3, 2, 8, 5)
@@ -59,19 +54,37 @@ environment = SubResource("Environment_fc5si")
 
 [node name="tower" parent="." instance=ExtResource("3_mhacm")]
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.699, 38.9336, -18.4813)
-collision_layer = 0
+[node name="Slider" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 30.699, 38.9336, -18.4813)
+wall_min_slide_angle = 0.0
+
+[node name="CollisionBox" type="CollisionShape3D" parent="Slider"]
+shape = SubResource("BoxShape3D_c7cox")
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Slider"]
+node_a = NodePath("..")
+node_b = NodePath("../../Player")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 30.699, 38.9336, -18.4813)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_fn3tq")
 script = ExtResource("1_6lv17")
 
 [node name="Camera3D" type="SpringArm3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 spring_length = 15.0
 
-[node name="Camera3D" type="Camera3D" parent="Player/Camera3D"]
+[node name="Camera3D2" type="Camera3D" parent="Player/Camera3D"]
+transform = Transform3D(1, 0, -1.16415e-10, 0, 1, 0, 0, 0, 1, 0, 5.61, 0)
 
 [node name="XROrigin3D" type="XROrigin3D" parent="Player"]
 
@@ -83,46 +96,8 @@ shape = SubResource("BoxShape3D_c7cox")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("BoxMesh_nnjws")
 
-[node name="PusherSpring" type="JoltGeneric6DOFJoint3D" parent="Player"]
-linear_limit_spring_x/frequency = 999.0
-linear_limit_spring_x/damping = 1.0
-linear_limit_spring_y/frequency = 999.0
-linear_limit_spring_y/damping = 1.0
-linear_limit_spring_z/frequency = 999.0
-linear_limit_spring_z/damping = 1.0
-linear_spring_x/enabled = true
-linear_spring_x/frequency = 999.0
-linear_spring_x/max_force = 99999.0
-linear_spring_y/enabled = true
-linear_spring_y/frequency = 999.0
-linear_spring_y/max_force = 99999.0
-linear_spring_z/enabled = true
-linear_spring_z/frequency = 999.0
-linear_spring_z/max_force = 99999.0
-node_a = NodePath("..")
-node_b = NodePath("PusherBody")
-
-[node name="PusherBody" type="RigidBody3D" parent="Player/PusherSpring"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8147e-06, 0, 0)
-collision_layer = 2
-collision_mask = 2
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-mass = 0.1
-gravity_scale = 0.0
-linear_damp = 10.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/PusherSpring/PusherBody"]
-mesh = SubResource("BoxMesh_t5o3n")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/PusherSpring/PusherBody"]
-shape = SubResource("ConvexPolygonShape3D_22byx")
-
 [node name="TestPlates" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 20, 19.0918, -28.2331)
-collision_layer = 3
-collision_mask = 3
 
 [node name="plates" parent="TestPlates" instance=ExtResource("5_08tl1")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00638771, 0.0012207, -0.0130033)
@@ -150,8 +125,6 @@ node_b = NodePath("../ScalesPlates")
 
 [node name="ScalesPlates" type="RigidBody3D" parent="ScalesBase"]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
-collision_layer = 3
-collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ScalesBase/ScalesPlates"]
 shape = SubResource("ConvexPolygonShape3D_4buvy")
@@ -161,8 +134,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0063
 
 [node name="TestBox" type="RigidBody3D" parent="."]
 transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, 55.5091, 21.1217, -40.9209)
-collision_layer = 3
-collision_mask = 3
 mass = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestBox"]
@@ -172,9 +143,8 @@ mesh = SubResource("BoxMesh_j4qfb")
 shape = SubResource("ConvexPolygonShape3D_wyss3")
 
 [node name="TestBox2" type="RigidBody3D" parent="."]
-transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, 43.8229, 21.1217, -32.7022)
-collision_layer = 3
-collision_mask = 3
+transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, 30.5378, 53.38, -18.9707)
+continuous_cd = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestBox2"]
 mesh = SubResource("BoxMesh_sir8a")
