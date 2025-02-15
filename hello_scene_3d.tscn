@@ -28,7 +28,7 @@ size = Vector3(4, 16, 4)
 friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_krclw"]
-size = Vector3(3, 3, 0.01)
+size = Vector3(3, 3, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nnjws"]
 size = Vector3(4, 16, 4)
@@ -83,9 +83,8 @@ physics_material_override = SubResource("PhysicsMaterial_fn3tq")
 script = ExtResource("1_6lv17")
 
 [node name="Stabilizer" type="SpringArm3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -7, 0)
 shape = SubResource("BoxShape3D_krclw")
-spring_length = 8.0
 
 [node name="Node3D" type="Node3D" parent="Player/Stabilizer"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
