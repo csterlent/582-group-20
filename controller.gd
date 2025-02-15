@@ -5,7 +5,7 @@ extends RigidBody3D
 # snappy: amount of acceleration for starting or stopping to move
 
 const SPEED = 30.0
-const STRENGTH = 40.0
+const STRENGTH = 20.0
 const SNAPPY = 20.0
 const JUMP_HEIGHT = 12.05
 

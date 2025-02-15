@@ -1,22 +1,30 @@
-[gd_scene load_steps=18 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=19 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_6lv17"]
-[ext_resource type="Texture2D" uid="uid://dc6lfdsw4mues" path="res://fading_sky-sunset_02-1024x512.png" id="3_hn2p2"]
 [ext_resource type="PackedScene" uid="uid://q47e06p6s1ww" path="res://models/tower/tower.tscn" id="3_mhacm"]
 [ext_resource type="PackedScene" uid="uid://bnpu5ahv48bmc" path="res://models/scales/base.gltf" id="4_wbnfn"]
 [ext_resource type="PackedScene" uid="uid://cyy22u2kcdvh0" path="res://models/scales/plates.gltf" id="5_08tl1"]
 
+[sub_resource type="Gradient" id="Gradient_y6qix"]
+colors = PackedColorArray(0.0784314, 0.0784314, 0.0784314, 1, 0.470588, 0.470588, 0.470588, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_er0mb"]
+gradient = SubResource("Gradient_y6qix")
+fill_from = Vector2(1, 0.2)
+fill_to = Vector2(1, 0.8)
+metadata/_snap_enabled = true
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l83k4"]
-panorama = ExtResource("3_hn2p2")
+panorama = SubResource("GradientTexture2D_er0mb")
 
 [sub_resource type="Sky" id="Sky_yo54g"]
 sky_material = SubResource("PanoramaSkyMaterial_l83k4")
 
 [sub_resource type="Environment" id="Environment_fc5si"]
 background_mode = 2
+background_energy_multiplier = 1.5
 sky = SubResource("Sky_yo54g")
-ambient_light_color = Color(0.74902, 0.717647, 0.807843, 1)
-ambient_light_sky_contribution = 0.1
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0001
@@ -30,14 +38,14 @@ friction = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_krclw"]
 size = Vector3(3, 3, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbx5g"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_nnjws"]
+material = SubResource("StandardMaterial3D_pbx5g")
 size = Vector3(4, 16, 4)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4buvy"]
 points = PackedVector3Array(-1, -7, 4, -9.78708e-05, -6.0001, 3, 2, -7, 4, -1, -7, 5, -1, 8, 4, 0.999804, -6.0001, 3, -9.78708e-05, 6.99863, 3, 2, -7, 5, 2, 8, 4, -1, 8, 5, 0.999804, 6.99863, 3, 2, 8, 5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_j4qfb"]
-size = Vector3(4, 16, 4)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wyss3"]
 points = PackedVector3Array(-2, -8, -2, -2, -8, 2, -2, 8, -2, 2, -8, -2, 2, -8, 2, -2, 8, 2, 2, 8, -2, 2, 8, 2)
@@ -50,7 +58,24 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="Scene" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.987294, -0.142391, 0.07054, 0.0155631, 0.528422, 0.848839, -0.158142, -0.836956, 0.523924, 37.5296, 5.72118, -31.3115)
+transform = Transform3D(0.869607, -0.270313, 0.413176, -0.492404, -0.413176, 0.766044, -0.0363574, -0.869607, -0.492404, 32, 0, -32)
+light_energy = 0.1
+shadow_bias = 0.2
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.869607, 0.270313, -0.413176, 0.492404, -0.413176, 0.766044, 0.0363574, -0.869607, -0.492404, 32, 0, -32)
+light_energy = 0.1
+shadow_bias = 0.2
+sky_mode = 1
+
+[node name="ShadowLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.984808, 0.173648, 2.80971e-08, -3.34849e-08, 2.80971e-08, 1, 0.173648, -0.984808, 3.34849e-08, 32, 0, -32)
+light_energy = 0.25
+shadow_enabled = true
+shadow_bias = 0.2
+directional_shadow_mode = 0
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fc5si")
@@ -83,8 +108,9 @@ physics_material_override = SubResource("PhysicsMaterial_fn3tq")
 script = ExtResource("1_6lv17")
 
 [node name="Stabilizer" type="SpringArm3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -7, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -6, 0)
 shape = SubResource("BoxShape3D_krclw")
+spring_length = 2.0
 
 [node name="Node3D" type="Node3D" parent="Player/Stabilizer"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -147,11 +173,13 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0063
 transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, 55.5091, 21.1217, -40.9209)
 mass = 10.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBox"]
-mesh = SubResource("BoxMesh_j4qfb")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox"]
 shape = SubResource("ConvexPolygonShape3D_wyss3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_nnjws")
+skeleton = NodePath("../../Player")
 
 [node name="TestBox2" type="RigidBody3D" parent="."]
 transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, 30.5378, 53.38, -18.9707)
