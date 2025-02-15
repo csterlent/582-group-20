@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	# Choose node that the mouse rotates
 	# Preferably a Camera3D but a SpringArm3D works too as a 3rd person camera
-	for child in get_children():
+	for child in get_node("Stabilizer").get_node("Node3D").get_children():
 		if child is Camera3D:
 			camera = child
 			break

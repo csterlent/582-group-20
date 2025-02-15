@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=18 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_6lv17"]
 [ext_resource type="Texture2D" uid="uid://dc6lfdsw4mues" path="res://fading_sky-sunset_02-1024x512.png" id="3_hn2p2"]
@@ -26,6 +26,9 @@ size = Vector3(4, 16, 4)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fn3tq"]
 friction = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_krclw"]
+size = Vector3(3, 3, 0.01)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nnjws"]
 size = Vector3(4, 16, 4)
@@ -79,12 +82,20 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_fn3tq")
 script = ExtResource("1_6lv17")
 
-[node name="Camera3D" type="SpringArm3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-spring_length = 15.0
+[node name="Stabilizer" type="SpringArm3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_krclw")
+spring_length = 8.0
 
-[node name="Camera3D2" type="Camera3D" parent="Player/Camera3D"]
-transform = Transform3D(1, 0, -1.16415e-10, 0, 1, 0, 0, 0, 1, 0, 5.61, 0)
+[node name="Node3D" type="Node3D" parent="Player/Stabilizer"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="Camera" type="Camera3D" parent="Player/Stabilizer/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+
+[node name="DebugArm" type="SpringArm3D" parent="Player/Stabilizer/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+spring_length = 15.0
 
 [node name="XROrigin3D" type="XROrigin3D" parent="Player"]
 
@@ -94,6 +105,7 @@ transform = Transform3D(1, 0, -1.16415e-10, 0, 1, 0, 0, 0, 1, 0, 5.61, 0)
 shape = SubResource("BoxShape3D_c7cox")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_nnjws")
 
 [node name="TestPlates" type="RigidBody3D" parent="."]
