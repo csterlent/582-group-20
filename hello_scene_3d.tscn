@@ -1,54 +1,22 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=12 format=3 uid="uid://cpprydr1rpo8s"]
 
-[ext_resource type="Script" path="res://controller.gd" id="1_6lv17"]
 [ext_resource type="PackedScene" uid="uid://q47e06p6s1ww" path="res://models/tower/tower.tscn" id="3_mhacm"]
+[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
 [ext_resource type="PackedScene" uid="uid://bnpu5ahv48bmc" path="res://models/scales/base.gltf" id="4_wbnfn"]
 [ext_resource type="PackedScene" uid="uid://cyy22u2kcdvh0" path="res://models/scales/plates.gltf" id="5_08tl1"]
-
-[sub_resource type="Gradient" id="Gradient_y6qix"]
-colors = PackedColorArray(0.0784314, 0.0784314, 0.0784314, 1, 0.470588, 0.470588, 0.470588, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_er0mb"]
-gradient = SubResource("Gradient_y6qix")
-fill_from = Vector2(1, 0.2)
-fill_to = Vector2(1, 0.8)
-metadata/_snap_enabled = true
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l83k4"]
-panorama = SubResource("GradientTexture2D_er0mb")
-
-[sub_resource type="Sky" id="Sky_yo54g"]
-sky_material = SubResource("PanoramaSkyMaterial_l83k4")
-
-[sub_resource type="Environment" id="Environment_fc5si"]
-background_mode = 2
-background_energy_multiplier = 1.5
-sky = SubResource("Sky_yo54g")
-ambient_light_color = Color(1, 1, 1, 1)
-tonemap_mode = 2
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0001
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_c7cox"]
-size = Vector3(4, 16, 4)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fn3tq"]
-friction = 0.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_krclw"]
-size = Vector3(3, 3, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbx5g"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_nnjws"]
-material = SubResource("StandardMaterial3D_pbx5g")
-size = Vector3(4, 16, 4)
+[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="5_dfwkr"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4buvy"]
 points = PackedVector3Array(-1, -7, 4, -9.78708e-05, -6.0001, 3, 2, -7, 4, -1, -7, 5, -1, 8, 4, 0.999804, -6.0001, 3, -9.78708e-05, 6.99863, 3, 2, -7, 5, 2, 8, 4, -1, 8, 5, 0.999804, 6.99863, 3, 2, 8, 5)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wyss3"]
 points = PackedVector3Array(-2, -8, -2, -2, -8, 2, -2, 8, -2, 2, -8, -2, 2, -8, 2, -2, 8, 2, 2, 8, -2, 2, 8, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbx5g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nnjws"]
+material = SubResource("StandardMaterial3D_pbx5g")
+size = Vector3(4, 16, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_sir8a"]
 
@@ -57,81 +25,7 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [node name="Scene" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.869607, -0.270313, 0.413176, -0.492404, -0.413176, 0.766044, -0.0363574, -0.869607, -0.492404, 32, 0, -32)
-light_energy = 0.1
-shadow_bias = 0.2
-sky_mode = 1
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.869607, 0.270313, -0.413176, 0.492404, -0.413176, 0.766044, 0.0363574, -0.869607, -0.492404, 32, 0, -32)
-light_energy = 0.1
-shadow_bias = 0.2
-sky_mode = 1
-
-[node name="ShadowLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.984808, 0.173648, 2.80971e-08, -3.34849e-08, 2.80971e-08, 1, 0.173648, -0.984808, 3.34849e-08, 32, 0, -32)
-light_energy = 0.25
-shadow_enabled = true
-shadow_bias = 0.2
-directional_shadow_mode = 0
-sky_mode = 1
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_fc5si")
-
 [node name="tower" parent="." instance=ExtResource("3_mhacm")]
-
-[node name="Slider" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 30.699, 38.9336, -18.4813)
-wall_min_slide_angle = 0.0
-
-[node name="CollisionBox" type="CollisionShape3D" parent="Slider"]
-shape = SubResource("BoxShape3D_c7cox")
-
-[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Slider"]
-node_a = NodePath("..")
-node_b = NodePath("../../Player")
-linear_limit_x/enabled = false
-linear_limit_y/enabled = false
-linear_limit_z/enabled = false
-angular_limit_x/enabled = false
-angular_limit_y/enabled = false
-angular_limit_z/enabled = false
-
-[node name="Player" type="RigidBody3D" parent="."]
-transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 30.699, 38.9336, -18.4813)
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-physics_material_override = SubResource("PhysicsMaterial_fn3tq")
-script = ExtResource("1_6lv17")
-
-[node name="Stabilizer" type="SpringArm3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -6, 0)
-shape = SubResource("BoxShape3D_krclw")
-spring_length = 2.0
-
-[node name="Node3D" type="Node3D" parent="Player/Stabilizer"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-
-[node name="Camera" type="Camera3D" parent="Player/Stabilizer/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
-
-[node name="DebugArm" type="SpringArm3D" parent="Player/Stabilizer/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
-spring_length = 15.0
-
-[node name="XROrigin3D" type="XROrigin3D" parent="Player"]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
-
-[node name="CollisionBox" type="CollisionShape3D" parent="Player"]
-shape = SubResource("BoxShape3D_c7cox")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_nnjws")
 
 [node name="TestPlates" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 20, 19.0918, -28.2331)
@@ -177,9 +71,8 @@ mass = 10.0
 shape = SubResource("ConvexPolygonShape3D_wyss3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_nnjws")
-skeleton = NodePath("../../Player")
+skeleton = NodePath("../../Player/Player")
 
 [node name="TestBox2" type="RigidBody3D" parent="."]
 transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, 30.5378, 53.38, -18.9707)
@@ -190,3 +83,8 @@ mesh = SubResource("BoxMesh_sir8a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox2"]
 shape = SubResource("ConvexPolygonShape3D_3o88q")
+
+[node name="Player" parent="." instance=ExtResource("4_qm4yq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 16, -19)
+
+[node name="Lighting" parent="." instance=ExtResource("5_dfwkr")]

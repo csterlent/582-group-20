@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="project escape VR"
-run/main_scene="res://hello_scene_3d.tscn"
+run/main_scene="res://scholar.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
