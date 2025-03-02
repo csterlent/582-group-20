@@ -1,16 +1,20 @@
+# 
+
+
 extends RigidBody3D
 
 # speed: m/s target speed of the body
 # strength: force that is exerted on other rigid bodies
 # snappy: amount of acceleration for starting or stopping to move
 
-const SPEED = 30.0
+const SPEED = 15.0
 const STRENGTH = 20.0
 const SNAPPY = 20.0
 const JUMP_HEIGHT = 12.05
 
 @onready var jump_speed:float
 @onready var slider:CharacterBody3D = get_parent().get_node("Slider")
+@onready var right_hand = $Stabilizer/Node3D/XROrigin3D/XRControllerRight
 var camera:Node3D # Node that rotates when the mouse is dragged
 
 # Called when the node enters the scene tree for the first time.
@@ -27,9 +31,10 @@ func _ready() -> void:
 	
 	# Choose node that the mouse rotates
 	# Preferably a Camera3D but a SpringArm3D works too as a 3rd person camera
-	for child in get_node("Stabilizer").get_node("Node3D").get_children():
-		if child is Camera3D:
+	for child in $Stabilizer/Node3D/XROrigin3D.get_children():
+		if child is XRCamera3D:
 			camera = child
+			print(child)
 			break
 		if child is SpringArm3D:
 			camera = child
@@ -37,6 +42,8 @@ func _ready() -> void:
 func _physics_process(delta):
 	# We create a local variable to store the input direction.
 	var input = Vector3.ZERO
+	input.x = right_hand.get_vector2("primary").x
+	input.z = -right_hand.get_vector2("primary").y
 	
 	# We check for each move input and update the direction accordingly.
 	if Input.is_action_pressed("move_right"):
@@ -86,7 +93,7 @@ func _physics_process(delta):
 	# With another move_and_slide call, the RigidBody3D can tell if its on the floor
 	slider.velocity = Vector3.DOWN
 	slider.move_and_slide()
-	if Input.is_action_pressed("jump") && slider.is_on_floor():
+	if (Input.is_action_pressed("jump") || right_hand.is_button_pressed("trigger")) && slider.is_on_floor():
 		linear_velocity.y = jump_speed
 	
 	# Apply force in the direction we've calculated, ignoring the vertical component

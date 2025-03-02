@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3m1n07whd2tc"]
+[gd_scene load_steps=10 format=3 uid="uid://d3m1n07whd2tc"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_ijpxa"]
+[ext_resource type="Script" path="res://xr_origin.gd" id="2_kc02q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7cox"]
 size = Vector3(4, 16, 4)
@@ -10,6 +11,12 @@ friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_krclw"]
 size = Vector3(3, 3, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sfc24"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0el81"]
+size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbx5g"]
 
@@ -52,16 +59,30 @@ spring_length = 2.0
 [node name="Node3D" type="Node3D" parent="PlayerBody/Stabilizer"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="Camera" type="Camera3D" parent="PlayerBody/Stabilizer/Node3D"]
+[node name="XROrigin3D" type="XROrigin3D" parent="PlayerBody/Stabilizer/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+script = ExtResource("2_kc02q")
 
-[node name="DebugArm" type="SpringArm3D" parent="PlayerBody/Stabilizer/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+[node name="Camera" type="XRCamera3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
+transform = Transform3D(1, 0, -2.32831e-10, 0, 1, 0, 1.16415e-10, 0, 1, 0, 0, 0)
+
+[node name="DebugArm" type="SpringArm3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
+transform = Transform3D(1, 0, 1.16415e-10, 0, 1, 0, -1.16415e-10, 0, 1, 0, 2, 0)
 spring_length = 15.0
 
-[node name="XROrigin3D" type="XROrigin3D" parent="PlayerBody"]
+[node name="XRControllerLeft" type="XRController3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+tracker = &"left_hand"
 
-[node name="XRCamera3D" type="XRCamera3D" parent="PlayerBody/XROrigin3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D/XRControllerLeft"]
+mesh = SubResource("BoxMesh_sfc24")
+
+[node name="XRControllerRight" type="XRController3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D/XRControllerRight"]
+mesh = SubResource("BoxMesh_0el81")
 
 [node name="CollisionBox" type="CollisionShape3D" parent="PlayerBody"]
 shape = SubResource("BoxShape3D_c7cox")
