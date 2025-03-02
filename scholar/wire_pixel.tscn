@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3axsdv6oguwr"]
+
+[ext_resource type="Script" path="res://scholar/wire_pixel.gd" id="1_0eh87"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pcxy6"]
+size = Vector3(1.001, 1.001, 1.001)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adkjr"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_axb3x"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_0eh87")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pcxy6")
+surface_material_override/0 = SubResource("StandardMaterial3D_adkjr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_axb3x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
