@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvwvn2hcbqmn6"]
+
+[ext_resource type="PackedScene" uid="uid://c8i8ieu05kpln" path="res://models/fossilroom/fossilroom.gltf" id="1_gcpil"]
+
+[node name="fossilroom" instance=ExtResource("1_gcpil")]
+
+[node name="Layer_1" parent="Node" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85, 0, 0)
+
+[node name="Layer_3" parent="Node" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85, 0, 0)

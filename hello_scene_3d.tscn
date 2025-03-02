@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="PackedScene" uid="uid://q47e06p6s1ww" path="res://models/tower/tower.tscn" id="3_mhacm"]
-[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="4_qm4yq"]
 [ext_resource type="PackedScene" uid="uid://bnpu5ahv48bmc" path="res://models/scales/base.gltf" id="4_wbnfn"]
 [ext_resource type="PackedScene" uid="uid://cyy22u2kcdvh0" path="res://models/scales/plates.gltf" id="5_08tl1"]
-[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="5_dfwkr"]
+[ext_resource type="PackedScene" path="res://lighting.tscn" id="5_dfwkr"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4buvy"]
 points = PackedVector3Array(-1, -7, 4, -9.78708e-05, -6.0001, 3, 2, -7, 4, -1, -7, 5, -1, 8, 4, 0.999804, -6.0001, 3, -9.78708e-05, 6.99863, 3, 2, -7, 5, 2, 8, 4, -1, 8, 5, 0.999804, 6.99863, 3, 2, 8, 5)
