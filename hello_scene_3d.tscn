@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=15 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="PackedScene" uid="uid://q47e06p6s1ww" path="res://models/tower/tower.tscn" id="3_mhacm"]
-[ext_resource type="PackedScene" path="res://player.tscn" id="4_qm4yq"]
+[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
 [ext_resource type="PackedScene" uid="uid://bnpu5ahv48bmc" path="res://models/scales/base.gltf" id="4_wbnfn"]
 [ext_resource type="PackedScene" uid="uid://cyy22u2kcdvh0" path="res://models/scales/plates.gltf" id="5_08tl1"]
-[ext_resource type="PackedScene" path="res://lighting.tscn" id="5_dfwkr"]
+[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="5_dfwkr"]
+[ext_resource type="PackedScene" uid="uid://sojjawgos8cg" path="res://models/ancientGreece/ancient_greece.tscn" id="6_si3xx"]
+[ext_resource type="PackedScene" uid="uid://dvwvn2hcbqmn6" path="res://models/fossilroom/fossilroom.tscn" id="7_w2asr"]
+[ext_resource type="PackedScene" uid="uid://dtxn5rfkn4acn" path="res://scholar/scholar.tscn" id="8_318m4"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4buvy"]
 points = PackedVector3Array(-1, -7, 4, -9.78708e-05, -6.0001, 3, 2, -7, 4, -1, -7, 5, -1, 8, 4, 0.999804, -6.0001, 3, -9.78708e-05, 6.99863, 3, 2, -7, 5, 2, 8, 4, -1, 8, 5, 0.999804, 6.99863, 3, 2, 8, 5)
@@ -85,6 +88,15 @@ mesh = SubResource("BoxMesh_sir8a")
 shape = SubResource("ConvexPolygonShape3D_3o88q")
 
 [node name="Player" parent="." instance=ExtResource("4_qm4yq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 16, -19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5979, 16, -19)
 
 [node name="Lighting" parent="." instance=ExtResource("5_dfwkr")]
+
+[node name="ancientGreece" parent="." instance=ExtResource("6_si3xx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 5, -60)
+
+[node name="fossilroom" parent="." instance=ExtResource("7_w2asr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.2647, -47.0785, 109.803)
+
+[node name="Scene" parent="." instance=ExtResource("8_318m4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, -2, -30)

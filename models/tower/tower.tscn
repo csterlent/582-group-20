@@ -23,6 +23,7 @@ cast_shadow = 0
 shape = SubResource("ConcavePolygonShape3D_kf8gj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node/Glass" index="0"]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node/Glass/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_sgfq7")
