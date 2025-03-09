@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://up4obg4jo3ve"]
+
+[ext_resource type="Script" path="res://player_input_controller.gd" id="1_0mups"]
+[ext_resource type="Script" path="res://mouse_keyboard_controller.gd" id="2_r2qwx"]
+[ext_resource type="Script" path="res://xr_controller.gd" id="3_ci7f0"]
+
+[node name="PlayerInputController" type="Node"]
+script = ExtResource("1_0mups")
+
+[node name="MouseKeyboardController" type="Node" parent="."]
+script = ExtResource("2_r2qwx")
+
+[node name="XRController" type="Node" parent="."]
+script = ExtResource("3_ci7f0")

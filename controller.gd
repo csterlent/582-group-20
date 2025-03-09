@@ -14,8 +14,10 @@ const JUMP_HEIGHT = 12.05
 
 @onready var jump_speed:float
 @onready var slider:CharacterBody3D = get_parent().get_node("Slider")
-@onready var right_hand = $Stabilizer/Node3D/XROrigin3D/XRControllerRight
-var camera:Node3D # Node that rotates when the mouse is dragged
+@onready var vr_base = $Stabilizer/Node3D/VRBase
+
+@export
+var input_controller: Node = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,38 +27,13 @@ func _ready() -> void:
 	
 	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 	jump_speed = sqrt(2 * JUMP_HEIGHT * gravity)
-	
-	# Capture mouse
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	# Choose node that the mouse rotates
-	# Preferably a Camera3D but a SpringArm3D works too as a 3rd person camera
-	for child in $Stabilizer/Node3D/XROrigin3D.get_children():
-		if child is XRCamera3D:
-			camera = child
-			print(child)
-			break
-		if child is SpringArm3D:
-			camera = child
 
 func _physics_process(delta):
 	# We create a local variable to store the input direction.
-	var input = Vector3.ZERO
-	input.x = right_hand.get_vector2("primary").x
-	input.z = -right_hand.get_vector2("primary").y
-	
-	# We check for each move input and update the direction accordingly.
-	if Input.is_action_pressed("move_right"):
-		input.x += 1
-	if Input.is_action_pressed("move_left"):
-		input.x -= 1
-	if Input.is_action_pressed("move_backward"):
-		input.z += 1
-	if Input.is_action_pressed("move_forward"):
-		input.z -= 1
+	var input: Vector3 = input_controller.get_input_vector()
 	
 	# Rotate the input vector so that moving forwards is the direction the camera faces
-	var v = camera.transform.basis * input
+	var v = vr_base.camera.transform.basis * input
 	
 	# Get the input vector with the right magnitude without any vertical component
 	v.y = 0
@@ -95,15 +72,16 @@ func _physics_process(delta):
 	# With another move_and_slide call, the RigidBody3D can tell if its on the floor
 	slider.velocity = Vector3.DOWN
 	slider.move_and_slide()
-	if (Input.is_action_pressed("jump") || right_hand.is_button_pressed("trigger")) && slider.is_on_floor():
+	if (input_controller.is_jump_pressed() && slider.is_on_floor()):
 		linear_velocity.y = jump_speed
 	
 	# Apply force in the direction we've calculated, ignoring the vertical component
 	v.y = linear_velocity.y
 	apply_central_force(STRENGTH*(v-linear_velocity))
 
+# REFACTOR: Move this to Mouse and Keyboard Player Controller
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		camera.rotation.y -= event.relative.x * 0.002
-		camera.rotation.x -= event.relative.y * 0.002
-		camera.rotation.x = clampf(camera.rotation.x, -PI/2.001, PI/2.001) # no neck breaking
+		vr_base.camera.rotation.y -= event.relative.x * 0.002
+		vr_base.camera.rotation.x -= event.relative.y * 0.002
+		vr_base.camera.rotation.x = clampf(vr_base.camera.rotation.x, -PI/2.001, PI/2.001) # no neck breaking
