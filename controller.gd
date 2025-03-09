@@ -7,7 +7,7 @@ extends RigidBody3D
 # strength: force that is exerted on other rigid bodies
 # snappy: amount of acceleration for starting or stopping to move
 
-const SPEED = 15.0
+const SPEED = 20.0
 const STRENGTH = 20.0
 const SNAPPY = 20.0
 const JUMP_HEIGHT = 12.05
@@ -61,6 +61,8 @@ func _physics_process(delta):
 	# Get the input vector with the right magnitude without any vertical component
 	v.y = 0
 	v = SPEED * v.normalized()
+	if Input.is_action_pressed("sprint"):
+		v *= 2
 	
 	# Complicated collision meshes make the rigid body freak out (freezing up on walls)
 	# Simplifying the meshes would take work
