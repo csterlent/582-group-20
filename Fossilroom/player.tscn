@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3m1n07whd2tc"]
+
+[ext_resource type="Script" path="res://controller.gd" id="1_ijpxa"]
+[ext_resource type="Script" path="res://xr_origin.gd" id="2_kc02q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c7cox"]
+size = Vector3(4, 16, 4)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fn3tq"]
+friction = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_krclw"]
+size = Vector3(3, 3, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sfc24"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0el81"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbx5g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nnjws"]
+material = SubResource("StandardMaterial3D_pbx5g")
+size = Vector3(4, 16, 4)
+
+[node name="Player" type="Node3D"]
+
+[node name="Slider" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 0, 0, 0)
+wall_min_slide_angle = 0.0
+
+[node name="CollisionBox" type="CollisionShape3D" parent="Slider"]
+shape = SubResource("BoxShape3D_c7cox")
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Slider"]
+node_a = NodePath("..")
+node_b = NodePath("../../PlayerBody")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="PlayerBody" type="RigidBody3D" parent="."]
+transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 0, 0, 0)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_fn3tq")
+script = ExtResource("1_ijpxa")
+
+[node name="Stabilizer" type="SpringArm3D" parent="PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -6, 0)
+shape = SubResource("BoxShape3D_krclw")
+spring_length = 2.0
+
+[node name="Node3D" type="Node3D" parent="PlayerBody/Stabilizer"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="XROrigin3D" type="XROrigin3D" parent="PlayerBody/Stabilizer/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+script = ExtResource("2_kc02q")
+
+[node name="Camera" type="XRCamera3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
+transform = Transform3D(1, 0, -2.32831e-10, 0, 1, 0, 1.16415e-10, 0, 1, 0, 0, 0)
+current = true
+
+[node name="DebugArm" type="SpringArm3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
+transform = Transform3D(1, 0, 1.16415e-10, 0, 1, 0, -1.16415e-10, 0, 1, 0, 2, 0)
+spring_length = 15.0
+
+[node name="XRControllerLeft" type="XRController3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+tracker = &"left_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D/XRControllerLeft"]
+mesh = SubResource("BoxMesh_sfc24")
+
+[node name="XRControllerRight" type="XRController3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D/XRControllerRight"]
+mesh = SubResource("BoxMesh_0el81")
+
+[node name="CollisionBox" type="CollisionShape3D" parent="PlayerBody"]
+shape = SubResource("BoxShape3D_c7cox")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerBody"]
+mesh = SubResource("BoxMesh_nnjws")

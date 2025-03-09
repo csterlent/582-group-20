@@ -1,0 +1,154 @@
+[gd_scene load_steps=13 format=3 uid="uid://y5hw1rvfs1f6"]
+
+[ext_resource type="PackedScene" uid="uid://dvwvn2hcbqmn6" path="res://models/fossilroom/fossilroom.tscn" id="1_ojd8g"]
+[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://Fossilroom/lighting.tscn" id="2_k70dp"]
+[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://Fossilroom/player.tscn" id="3_vlu76"]
+[ext_resource type="PackedScene" uid="uid://con8pj5awhfli" path="res://models/fossilroom/movingplat.tscn" id="4_dmc63"]
+[ext_resource type="PackedScene" uid="uid://d0sqis6m678l0" path="res://models/fossilroom/bird.gltf" id="5_kifve"]
+[ext_resource type="PackedScene" uid="uid://5vddgwtq6veb" path="res://models/fossilroom/wall_ledge.tscn" id="6_h86b0"]
+
+[sub_resource type="Animation" id="Animation_2xb2v"]
+resource_name = "backandforth"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 10, 10.6, 19.7333, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(149.42, 23.4312, 11.7364), Vector3(149.42, 23.4312, 11.7364), Vector3(149.42, 23.4312, -104.794), Vector3(149.42, 23.4312, -104.794), Vector3(149.42, 23.4312, 12.0814), Vector3(149.42, 23.4312, 12.0814)]
+}
+
+[sub_resource type="Animation" id="Animation_0p6k5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(149.42, 23.4312, 11.7364)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jqoj"]
+_data = {
+"RESET": SubResource("Animation_0p6k5"),
+"backandforth": SubResource("Animation_2xb2v")
+}
+
+[sub_resource type="Animation" id="Animation_r4t46"]
+resource_name = "bird flight"
+length = 29.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.53333, 11.0333, 15.8, 23.0667, 27.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(121.604, 28.8069, -53.5335), Vector3(42.9144, 21.5641, -58.7866), Vector3(30.8285, 25.9001, -24.3057), Vector3(93.6851, 28.6134, -25.8957), Vector3(147.165, 33.3606, -53.1104), Vector3(180.447, 33.3606, -47.6229)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6.53333, 11.0333, 15.8, 23.0667, 27.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0364977, -1.57441, 0.017909), Vector3(0.00902642, -1.5744, 0.0180082), Vector3(0.00902641, 0.28657, 0.0180082), Vector3(0.00902641, 1.99909, 0.0180082), Vector3(0.00902642, 1.46352, 0.0180082), Vector3(0.00902642, 1.46352, 0.0180082)]
+}
+
+[sub_resource type="Animation" id="Animation_g5our"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(119.613, 34.5454, -47.0335)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00902642, -1.5744, 0.0180082)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vafjn"]
+_data = {
+"RESET": SubResource("Animation_g5our"),
+"bird flight": SubResource("Animation_r4t46")
+}
+
+[node name="FossilRoom" type="Node3D"]
+
+[node name="fossilroom" parent="." instance=ExtResource("1_ojd8g")]
+
+[node name="Lighting" parent="." instance=ExtResource("2_k70dp")]
+
+[node name="Player" parent="." instance=ExtResource("3_vlu76")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.81803, 11.0986, -7.0888)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("4_dmc63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 149.42, 23.4312, 11.7364)
+slide_on_ceiling = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D"]
+libraries = {
+"": SubResource("AnimationLibrary_5jqoj")
+}
+autoplay = "backandforth"
+
+[node name="bird" parent="." instance=ExtResource("5_kifve")]
+transform = Transform3D(-0.00377033, -0.0089598, -0.999953, 0.0180065, 0.999797, -0.00902629, 0.999831, -0.0180396, -0.00360824, 119.613, 34.5454, -47.0335)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="bird"]
+libraries = {
+"": SubResource("AnimationLibrary_vafjn")
+}
+autoplay = "bird flight"
+
+[node name="CharacterBody3D2" parent="." instance=ExtResource("6_h86b0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.929, 26.2548, -106.4)
+
+[node name="CharacterBody3D3" parent="." instance=ExtResource("6_h86b0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.958, 29.3405, -106.522)
+
+[node name="CharacterBody3D4" parent="." instance=ExtResource("6_h86b0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120.144, 30.5046, -106.43)
+
+[node name="CharacterBody3D5" parent="." instance=ExtResource("6_h86b0")]
+transform = Transform3D(0.999956, -0.00852564, 0.00393545, 0.00853347, 0.999962, -0.00197566, -0.00391846, 0.00200915, 0.99999, 104.902, 24.8964, -106.547)
+
+[node name="CharacterBody3D6" parent="." instance=ExtResource("6_h86b0")]
+transform = Transform3D(0.999956, -0.00852564, 0.00393545, 0.00853347, 0.999962, -0.00197566, -0.00391846, 0.00200915, 0.99999, 90.4271, 22.8774, -106.465)
+
+[node name="CharacterBody3D7" parent="." instance=ExtResource("6_h86b0")]
+transform = Transform3D(0.999956, -0.00852564, 0.00393545, 0.00853347, 0.999962, -0.00197566, -0.00391846, 0.00200915, 0.99999, 77.7395, 26.1744, -105.644)
