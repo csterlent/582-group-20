@@ -6,7 +6,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-@onready var painting = get_parent().get_node("Painting/Camera3D")
+@export var painting : MeshInstance3D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Camera3D.global_transform = painting.global_transform
+	$Camera3D.global_transform = painting.get_node("Camera3D").global_transform

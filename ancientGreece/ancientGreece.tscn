@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtbrb1l463xk5"]
 
-[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://Fossilroom/lighting.tscn" id="2_hxg2p"]
-[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://Fossilroom/player.tscn" id="3_okpb5"]
+[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="2_hxg2p"]
+[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="3_okpb5"]
 [ext_resource type="PackedScene" uid="uid://sojjawgos8cg" path="res://models/ancientGreece/ancient_greece.tscn" id="3_pdx63"]
 
 [node name="AncientGreece" type="Node3D"]
