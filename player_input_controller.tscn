@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://mouse_keyboard_controller.gd" id="2_r2qwx"]
 [ext_resource type="Script" path="res://xr_controller.gd" id="3_ci7f0"]
 
-[node name="PlayerInputController" type="Node"]
+[node name="PlayerInputController" type="Node3D"]
 script = ExtResource("1_0mups")
 
-[node name="MouseKeyboardController" type="Node" parent="."]
+[node name="MouseKeyboardController" type="Node3D" parent="."]
 script = ExtResource("2_r2qwx")
 
-[node name="XRController" type="Node" parent="."]
+[node name="XRController" type="Node3D" parent="."]
 script = ExtResource("3_ci7f0")

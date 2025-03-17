@@ -1,4 +1,4 @@
-extends XROrigin3D
+class_name VRBase extends XROrigin3D
 
 @onready
 var left_hand = $XRControllerLeft

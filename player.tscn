@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3m1n07whd2tc"]
+[gd_scene load_steps=11 format=3 uid="uid://d3m1n07whd2tc"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_ijpxa"]
+[ext_resource type="Script" path="res://player.gd" id="1_uporl"]
 [ext_resource type="PackedScene" uid="uid://l8vhaettc2ns" path="res://vr_base.tscn" id="3_atccx"]
 [ext_resource type="PackedScene" uid="uid://up4obg4jo3ve" path="res://player_input_controller.tscn" id="3_sst4p"]
+[ext_resource type="Script" path="res://grab_controller.gd" id="5_78jx3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7cox"]
 size = Vector3(4, 16, 4)
@@ -20,6 +22,7 @@ material = SubResource("StandardMaterial3D_pbx5g")
 size = Vector3(4, 16, 4)
 
 [node name="Player" type="Node3D"]
+script = ExtResource("1_uporl")
 
 [node name="Slider" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 0, 0, 0)
@@ -64,3 +67,6 @@ shape = SubResource("BoxShape3D_c7cox")
 mesh = SubResource("BoxMesh_nnjws")
 
 [node name="PlayerInputController" parent="." instance=ExtResource("3_sst4p")]
+
+[node name="GrabController" type="Node3D" parent="."]
+script = ExtResource("5_78jx3")

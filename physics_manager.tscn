@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvk3i5rpjy6pc"]
+
+[ext_resource type="Script" path="res://physics_manager.gd" id="1_iqlbj"]
+
+[node name="PhysicsManager" type="Node3D"]
+script = ExtResource("1_iqlbj")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=16 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="PackedScene" uid="uid://q47e06p6s1ww" path="res://models/tower/tower.tscn" id="3_mhacm"]
 [ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://sojjawgos8cg" path="res://models/ancientGreece/ancient_greece.tscn" id="6_si3xx"]
 [ext_resource type="PackedScene" uid="uid://dtxn5rfkn4acn" path="res://scholar/scholar.tscn" id="8_318m4"]
 [ext_resource type="PackedScene" uid="uid://y5hw1rvfs1f6" path="res://Fossilroom/fossil_room.tscn" id="8_x833l"]
+[ext_resource type="PackedScene" uid="uid://cvk3i5rpjy6pc" path="res://physics_manager.tscn" id="9_q68tk"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4buvy"]
 points = PackedVector3Array(-1, -7, 4, -9.78708e-05, -6.0001, 3, 2, -7, 4, -1, -7, 5, -1, 8, 4, 0.999804, -6.0001, 3, -9.78708e-05, 6.99863, 3, 2, -7, 5, 2, 8, 4, -1, 8, 5, 0.999804, 6.99863, 3, 2, 8, 5)
@@ -68,6 +69,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0063
 
 [node name="TestBox" type="RigidBody3D" parent="."]
 transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, 55.5091, 21.1217, -40.9209)
+collision_layer = 3
 mass = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox"]
@@ -79,6 +81,7 @@ skeleton = NodePath("../../Player/Player")
 
 [node name="TestBox2" type="RigidBody3D" parent="."]
 transform = Transform3D(0.817969, 0, 0.575262, 0, 1, 0, -0.575262, 0, 0.817969, 30.5378, 53.38, -18.9707)
+collision_layer = 3
 continuous_cd = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestBox2"]
@@ -99,3 +102,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 5, -60)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, -2, -30)
 
 [node name="FossilRoom" parent="." instance=ExtResource("8_x833l")]
+
+[node name="PhysicsManager" parent="." instance=ExtResource("9_q68tk")]

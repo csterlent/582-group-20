@@ -17,7 +17,7 @@ const JUMP_HEIGHT = 12.05
 @onready var vr_base = $Stabilizer/Node3D/VRBase
 
 @export
-var input_controller: Node = null;
+var input_controller: PlayerInputController = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	# We create a local variable to store the input direction.
-	var input: Vector3 = input_controller.get_input_vector()
+	var input := input_controller.get_input_vector()
 	
 	# Rotate the input vector so that moving forwards is the direction the camera faces
 	var v = vr_base.camera.transform.basis * input
@@ -38,7 +38,7 @@ func _physics_process(delta):
 	# Get the input vector with the right magnitude without any vertical component
 	v.y = 0
 	v = SPEED * v.normalized()
-	if Input.is_action_pressed("sprint"):
+	if input_controller.is_sprint_pressed():
 		v *= 2
 	
 	# Complicated collision meshes make the rigid body freak out (freezing up on walls)
