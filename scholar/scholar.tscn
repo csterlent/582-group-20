@@ -50,7 +50,7 @@ viewport_path = NodePath("SubViewport2")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_y0h0b")
 
-[node name="Scene" type="Node3D"]
+[node name="Scholar" type="Node3D"]
 
 [node name="Lighting" parent="." instance=ExtResource("3_avuui")]
 
@@ -65,6 +65,7 @@ script = ExtResource("5_lm8w4")
 shape = SubResource("ConcavePolygonShape3D_g64wf")
 
 [node name="scales" type="RigidBody3D" parent="scales_base"]
+collision_layer = 3
 mass = 0.25
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, 1)
@@ -96,19 +97,20 @@ shape = SubResource("BoxShape3D_8voub")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 11.5, 5.5)
 shape = SubResource("BoxShape3D_sguhn")
 
-[node name="StaticBody3D" type="RigidBody3D" parent="."]
+[node name="Book" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4, 4, -6)
+collision_layer = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Book"]
 mesh = SubResource("BoxMesh_qfl15")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Book"]
 shape = SubResource("ConvexPolygonShape3D_yhgde")
 
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 
 [node name="Painting1" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5, 16.5, -15)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5, 16.5, -17)
 mesh = SubResource("QuadMesh_xvbgs")
 surface_material_override/0 = SubResource("StandardMaterial3D_t870t")
 
