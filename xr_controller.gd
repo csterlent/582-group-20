@@ -37,8 +37,8 @@ func setup(interface: XRInterface, _vr_base: VRBase) -> void:
 	m_interfaceVr.pose_recentered.connect(processOpenXrPoseRecentered)
 
 func get_input_vector() -> Vector3: 
-	var vec: Vector2 = vr_base.right_hand_vector()
-	return Vector3(vec.x, 0, vec.y)
+	var vec: Vector2 = vr_base.left_hand_vector()
+	return Vector3(vec.x, 0, -vec.y)
 	
 func is_sprint_pressed() -> bool: 
 	return false
