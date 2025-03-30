@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dtxn5rfkn4acn" path="res://scholar/scholar.tscn" id="8_318m4"]
 [ext_resource type="PackedScene" uid="uid://dj86t1wq53882" path="res://models/lobby/lobby.tscn" id="8_u5nwh"]
 [ext_resource type="PackedScene" uid="uid://y5hw1rvfs1f6" path="res://Fossilroom/fossil_room.tscn" id="8_x833l"]
-[ext_resource type="PackedScene" uid="uid://cvk3i5rpjy6pc" path="res://physics_manager.tscn" id="9_q68tk"]
+[ext_resource type="PackedScene" path="res://physics_manager.tscn" id="9_q68tk"]
 
 [node name="Scene" type="Node3D"]
 

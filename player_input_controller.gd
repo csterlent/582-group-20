@@ -19,11 +19,11 @@ enum HAND {LEFT, RIGHT}
 var CUR_CONTROLLER: CONTROLLER
 var _current_controller: Node;
 
-func setup(camera: Camera3D): 
+func setup(camera: Camera3D, context): 
 	var vr_interface = get_vr_interface()
 	if vr_interface != null: 
 		_current_controller = get_node("XRController")
-		_current_controller.call("setup", vr_interface)
+		_current_controller.call("setup", vr_interface, context)
 		CUR_CONTROLLER = CONTROLLER.VR
 	else: 
 		_current_controller = get_node("MouseKeyboardController")

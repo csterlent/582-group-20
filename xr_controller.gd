@@ -10,8 +10,7 @@ var m_transformVr : Transform3D
 # The distance from the VR hands that objects can be interacted with
 var interact_radius = 20
 
-@export
-var vr_base: VRBase = null;
+var vr_base: VRBase;
 
 @onready var left_grab_controller: GrabController = GrabController.new()
 @onready var right_grab_controller: GrabController = GrabController.new()
@@ -19,7 +18,8 @@ var vr_base: VRBase = null;
 @onready var physics_manager: PhysicsManager = $/root/Scene/PhysicsManager
 
 
-func setup(interface: XRInterface) -> void: 
+func setup(interface: XRInterface, _vr_base: VRBase) -> void:
+	vr_base = _vr_base;
 	assert(vr_base != null, "VR Base must be assigned to controller")
 		
 	m_interfaceVr = interface

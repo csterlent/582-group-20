@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://controller.gd" id="1_ijpxa"]
 [ext_resource type="Script" path="res://player.gd" id="1_uporl"]
-[ext_resource type="PackedScene" uid="uid://l8vhaettc2ns" path="res://vr_base.tscn" id="3_atccx"]
+[ext_resource type="PackedScene" path="res://vr_base.tscn" id="3_atccx"]
 [ext_resource type="PackedScene" uid="uid://up4obg4jo3ve" path="res://player_input_controller.tscn" id="3_sst4p"]
 [ext_resource type="Script" path="res://grab_controller.gd" id="5_78jx3"]
 
