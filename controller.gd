@@ -19,6 +19,16 @@ const JUMP_HEIGHT = 12.05
 @export
 var input_controller: PlayerInputController = null;
 
+@onready var step = preload("res://footstep.wav")
+var last_step = Time.get_unix_time_from_system()
+func sound():
+	last_step = Time.get_unix_time_from_system()
+	if !$AudioStreamPlayer3D.is_playing():
+		$AudioStreamPlayer3D.global_position = self.global_position
+		$AudioStreamPlayer3D.stream = step
+		$AudioStreamPlayer3D.play()
+	return null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# The force that moves other things is the same as the force that accelerates
@@ -31,7 +41,7 @@ func _ready() -> void:
 func _physics_process(delta):
 	# We create a local variable to store the input direction.
 	var input := input_controller.get_input_vector()
-	
+		
 	# Rotate the input vector so that moving forwards is the direction the camera faces
 	var v = vr_base.camera.transform.basis * input
 	
@@ -74,14 +84,34 @@ func _physics_process(delta):
 	slider.move_and_slide()
 	if (input_controller.is_jump_pressed() && slider.is_on_floor()):
 		linear_velocity.y = jump_speed
-	
+	if slider.is_on_floor() and input.length() > 0:
+		if input_controller.is_sprint_pressed() or Time.get_unix_time_from_system() - last_step > 0.3:
+			sound()
+
 	# Apply force in the direction we've calculated, ignoring the vertical component
 	v.y = linear_velocity.y
 	apply_central_force(STRENGTH*(v-linear_velocity))
 
 # REFACTOR: Move this to Mouse and Keyboard Player Controller
+
+var scroll = 1.0
 func _input(event):
+	if input_controller.CUR_CONTROLLER == input_controller.CONTROLLER.VR:
+		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		vr_base.camera.rotation.y -= event.relative.x * 0.002
 		vr_base.camera.rotation.x -= event.relative.y * 0.002
 		vr_base.camera.rotation.x = clampf(vr_base.camera.rotation.x, -PI/2.001, PI/2.001) # no neck breaking
+		
+		vr_base.left_hand.position = vr_base.camera.basis*Vector3(-1, -0.5, -2)*scroll
+		vr_base.left_hand.rotation = vr_base.camera.rotation
+
+		vr_base.right_hand.position = vr_base.camera.basis*Vector3(1, -0.5, -2)*scroll
+		vr_base.right_hand.rotation = vr_base.camera.rotation
+	if event is InputEventKey:
+		if event.pressed && event.keycode == KEY_R:
+			# hands out
+			scroll += 0.5
+		if event.pressed && event.keycode == KEY_F:
+			# hands in
+			scroll -= 0.5

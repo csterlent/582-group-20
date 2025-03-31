@@ -6,17 +6,33 @@ extends MeshInstance3D
 func _ready() -> void:
 	pass # Replace with function body.
 
+@onready var slide = preload("res://models/lobby/slide.wav")
+func sound(hand):
+	if left_version and !$AudioStreamPlayer3D.is_playing():
+		$AudioStreamPlayer3D.global_position = hand.global_position
+		$AudioStreamPlayer3D.stream = slide
+		$AudioStreamPlayer3D.play()
+	return null
+
+var x = 0
 
 @onready var pos = position
 @onready var body = get_parent().get_parent().get_node("TestTicket")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var x = 10 - (Vector3(31, 12, -10) - body.global_position).length()
-	x *= 0.1;
+	if (Vector3(31.5, 12, -10.5) - body.global_position).length() < 2:
+		if x == 0:
+			sound(body)
+		x += 0.04
+	else:
+		if x == 3:
+			sound(body)
+		x -= 0.1
 	if (x < 0):
 		x = 0
-	if (x > 5):
-		x = 5
+	if (x > 3):
+		x = 3
 	if (left_version):
-		x *= -1
-	position = pos + Vector3(0, x, 0)
+		position = pos + Vector3(0, -x, 0)
+	else:
+		position = pos + Vector3(0, x, 0)

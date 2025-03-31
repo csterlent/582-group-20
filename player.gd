@@ -10,7 +10,7 @@ signal player_jump;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	input_controller.setup(vr_base.camera, vr_base)
-
+ 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if input_controller.is_interact_pressed(null): 

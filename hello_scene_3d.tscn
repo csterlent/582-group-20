@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=13 format=3 uid="uid://cpprydr1rpo8s"]
 
+[ext_resource type="Script" path="res://main_scene.gd" id="1_7g65w"]
 [ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
 [ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="5_dfwkr"]
 [ext_resource type="PackedScene" uid="uid://sojjawgos8cg" path="res://models/ancientGreece/ancient_greece.tscn" id="6_si3xx"]
@@ -7,19 +8,23 @@
 [ext_resource type="PackedScene" uid="uid://dtxn5rfkn4acn" path="res://scholar/scholar.tscn" id="8_318m4"]
 [ext_resource type="PackedScene" uid="uid://dj86t1wq53882" path="res://models/lobby/lobby.tscn" id="8_u5nwh"]
 [ext_resource type="PackedScene" uid="uid://y5hw1rvfs1f6" path="res://Fossilroom/fossil_room.tscn" id="8_x833l"]
-[ext_resource type="PackedScene" path="res://physics_manager.tscn" id="9_q68tk"]
+[ext_resource type="Script" path="res://sub_viewport_container.gd" id="9_0vvds"]
+[ext_resource type="Texture2D" uid="uid://df4kgpsihpc54" path="res://teardrop.png" id="9_p8ucn"]
+[ext_resource type="PackedScene" uid="uid://cvk3i5rpjy6pc" path="res://physics_manager.tscn" id="9_q68tk"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="11_xevbo"]
 
 [node name="Scene" type="Node3D"]
+script = ExtResource("1_7g65w")
 
 [node name="Player" parent="." instance=ExtResource("4_qm4yq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5979, 10.3929, -29.1752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5979, 10.3929, -3.45267)
 
 [node name="Lighting" parent="." instance=ExtResource("5_dfwkr")]
 
 [node name="ancientGreece" parent="." instance=ExtResource("6_si3xx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 0, -84)
 
-[node name="Scene" parent="." instance=ExtResource("8_318m4")]
+[node name="Scholar" parent="." instance=ExtResource("8_318m4")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, -2, -30)
 
 [node name="FossilRoom" parent="." instance=ExtResource("8_x833l")]
@@ -32,3 +37,55 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, 
 
 [node name="lobby" parent="." instance=ExtResource("8_u5nwh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 54, 0, 51)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -348.0
+offset_top = -200.0
+offset_right = 164.0
+offset_bottom = 312.0
+grow_horizontal = 0
+rotation = 1.41023
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(256, 300)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_p8ucn")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("9_0vvds")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 81.6331, 0)
+cull_mask = 1048573
+projection = 1
+size = 100.0
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer"]
+layout_mode = 2
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+script = ExtResource("11_xevbo")
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="PauseMenu/CenterContainer"]
+layout_mode = 2
+text = "PAUSED"

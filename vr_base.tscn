@@ -1,12 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://l8vhaettc2ns"]
+[gd_scene load_steps=5 format=3 uid="uid://l8vhaettc2ns"]
 
 [ext_resource type="Script" path="res://vr_base.gd" id="1_qpc3h"]
+[ext_resource type="Script" path="res://my_hand_script.gd" id="2_03y2m"]
+[ext_resource type="ArrayMesh" uid="uid://btuetrubnqc6r" path="res://R_hand.obj" id="3_7ng2c"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_sfc24"]
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_0el81"]
-size = Vector3(0.1, 0.1, 0.1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_sfa3j"]
+size = Vector3(0.15, 0.15, 0.15)
 
 [node name="XROrigin3D" type="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
@@ -15,16 +14,32 @@ script = ExtResource("1_qpc3h")
 [node name="XRControllerLeft" type="XRController3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 tracker = &"left_hand"
+script = ExtResource("2_03y2m")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XRControllerLeft"]
-mesh = SubResource("BoxMesh_sfc24")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XRControllerLeft"]
+transform = Transform3D(0.00733756, 0.00646683, -0.00208336, 0.00239121, 0.000412155, 0.00970115, -0.00635943, 0.00761645, 0.00124393, -0.00120007, -0.0638802, -0.110957)
+mesh = ExtResource("3_7ng2c")
+
+[node name="Area3D" type="Area3D" parent="XRControllerLeft"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRControllerLeft/Area3D"]
+shape = SubResource("BoxShape3D_sfa3j")
 
 [node name="XRControllerRight" type="XRController3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 tracker = &"right_hand"
+script = ExtResource("2_03y2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XRControllerRight"]
-mesh = SubResource("BoxMesh_0el81")
+transform = Transform3D(-0.0045674, -0.00775945, 0.00435083, 0.00435927, 0.00231113, 0.00869801, -0.00775471, 0.00586938, 0.00232697, 0.0135586, -0.0571188, -0.110957)
+mesh = ExtResource("3_7ng2c")
+
+[node name="Area3D" type="Area3D" parent="XRControllerRight"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRControllerRight/Area3D"]
+shape = SubResource("BoxShape3D_sfa3j")
 
 [node name="Camera" type="XRCamera3D" parent="."]
 transform = Transform3D(1, 0, -1.16415e-10, 0, 1, 0, 1.16415e-10, 0, 1, 0, 0, 0)

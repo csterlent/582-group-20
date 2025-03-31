@@ -9,7 +9,7 @@ func setup(camera: Camera3D) -> void:
 	var interact_node = Node3D.new()
 	interact_node.position = camera.position + Vector3.FORWARD
 	camera.add_child(interact_node)
-	grab_controller.grab_point = interact_node
+	#grab_controller.grab_point = interact_node
 	
 
 func is_sprint_pressed() -> bool: 
@@ -19,7 +19,7 @@ func is_jump_pressed() -> bool:
 	return Input.is_action_pressed("jump")
 	
 func is_interact_pressed(context) -> bool:
-	return Input.is_action_pressed("grab")
+	return false#Input.is_action_pressed("grab")
 
 func get_interactables(camera: Camera3D) -> Node: 
 	var mousepos := get_viewport().get_mouse_position()
@@ -35,13 +35,14 @@ func get_interactables(camera: Camera3D) -> Node:
 	return null
 	
 func handle_grab_object(object: Node3D, context):
-	grab_controller.grab_object(object)
+	pass#grab_controller.grab_object(object)
 
 func is_holding_object(context) -> bool: 
-	return grab_controller.grabbed_object != null
+	return false#grab_controller.grabbed_object != null
 
 func handle_release_object(context):
-	grab_controller.release_object() 
+	#grab_controller.release_object()
+	pass
 
 func get_input_vector() -> Vector3:
 	var input_vector: Vector3 = Vector3.ZERO 

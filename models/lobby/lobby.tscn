@@ -1,15 +1,18 @@
-[gd_scene load_steps=26 format=4 uid="uid://dj86t1wq53882"]
+[gd_scene load_steps=29 format=4 uid="uid://dj86t1wq53882"]
 
 [ext_resource type="PackedScene" uid="uid://c1aaf6moctlg6" path="res://models/lobby/lobby.gltf" id="1_pgfq5"]
+[ext_resource type="Material" uid="uid://2qexsvo1vncf" path="res://models/tower/glass.tres" id="3_2j7bp"]
 [ext_resource type="Script" path="res://models/lobby/turnstile.gd" id="3_4xbh6"]
 [ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="3_85b7x"]
+[ext_resource type="Script" path="res://models/lobby/doorhandles.gd" id="4_7nwml"]
 [ext_resource type="Texture2D" uid="uid://cvie2ba3o1s18" path="res://models/lobby/lobby_swing_0.png" id="4_jwk44"]
+[ext_resource type="Script" path="res://models/lobby/swing_door.gd" id="6_rywaq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ne6s3"]
 size = Vector3(2, 3, 0.01)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c50hc"]
-albedo_color = Color(1, 0.341176, 1, 1)
+albedo_color = Color(1, 0.501961, 0.698039, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1bfsr"]
 size = Vector3(2, 3, 1)
@@ -127,6 +130,9 @@ shape = SubResource("ConcavePolygonShape3D_kbrto")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node/Layer_2/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_msa02")
 
+[node name="Glass" parent="Node" index="2"]
+surface_material_override/0 = ExtResource("3_2j7bp")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Node/Glass" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node/Glass/StaticBody3D" index="0"]
@@ -167,15 +173,22 @@ shape = SubResource("ConcavePolygonShape3D_6i5nl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node/Keypad/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_pp2p6")
 
+[node name="Roof" parent="Node" index="10"]
+layers = 2
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Node/Roof" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node/Roof/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_mdvt1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node/Glassdoor handles" index="0"]
+collision_layer = 3
+script = ExtResource("4_7nwml")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node/Glassdoor handles/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_1a5e1")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Node/Glassdoor handles/StaticBody3D" index="1"]
 
 [node name="Turnstile Poles Left" parent="Node" index="12"]
 script = ExtResource("3_4xbh6")
@@ -185,6 +198,8 @@ left_version = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node/Turnstile Poles Left/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ye742")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Node/Turnstile Poles Left" index="1"]
 
 [node name="Turnstile Poles Right" parent="Node" index="13"]
 script = ExtResource("3_4xbh6")
@@ -203,6 +218,7 @@ angular_limit/enable = true
 [node name="Swing door" type="RigidBody3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 8.0745, -60)
 axis_lock_linear_y = true
+script = ExtResource("6_rywaq")
 
 [node name="Layer_1" type="MeshInstance3D" parent="Swing door" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.016, 8)
@@ -212,3 +228,6 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Swing door" index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.016, 8)
 shape = SubResource("ConvexPolygonShape3D_3vb77")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Swing door" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, -8.0745, 60)
