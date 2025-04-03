@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_7g65w"]
-[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
-[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="5_dfwkr"]
+[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://Fossilroom/player.tscn" id="4_qm4yq"]
+[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://Fossilroom/lighting.tscn" id="5_dfwkr"]
 [ext_resource type="PackedScene" uid="uid://sojjawgos8cg" path="res://models/ancientGreece/ancient_greece.tscn" id="6_si3xx"]
 [ext_resource type="PackedScene" uid="uid://bl7eax7do3ce8" path="res://models/junction1/junction_1.tscn" id="7_2kdxf"]
 [ext_resource type="PackedScene" uid="uid://dtxn5rfkn4acn" path="res://scholar/scholar.tscn" id="8_318m4"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://y5hw1rvfs1f6" path="res://Fossilroom/fossil_room.tscn" id="8_x833l"]
 [ext_resource type="Script" path="res://sub_viewport_container.gd" id="9_0vvds"]
 [ext_resource type="Texture2D" uid="uid://df4kgpsihpc54" path="res://teardrop.png" id="9_p8ucn"]
-[ext_resource type="PackedScene" uid="uid://cvk3i5rpjy6pc" path="res://physics_manager.tscn" id="9_q68tk"]
+[ext_resource type="PackedScene" path="res://physics_manager.tscn" id="9_q68tk"]
 [ext_resource type="Script" path="res://pause_menu.gd" id="11_xevbo"]
 
 [node name="Scene" type="Node3D"]

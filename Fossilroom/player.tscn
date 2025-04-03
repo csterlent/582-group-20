@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3m1n07whd2tc"]
+[gd_scene load_steps=9 format=3 uid="uid://d3m1n07whd2tc"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_ijpxa"]
-[ext_resource type="Script" path="res://xr_origin.gd" id="2_kc02q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7cox"]
 size = Vector3(4, 16, 4)
@@ -61,7 +60,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 
 [node name="XROrigin3D" type="XROrigin3D" parent="PlayerBody/Stabilizer/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
-script = ExtResource("2_kc02q")
 
 [node name="Camera" type="XRCamera3D" parent="PlayerBody/Stabilizer/Node3D/XROrigin3D"]
 transform = Transform3D(1, 0, -2.32831e-10, 0, 1, 0, 1.16415e-10, 0, 1, 0, 0, 0)

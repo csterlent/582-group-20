@@ -8,6 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://5vddgwtq6veb" path="res://models/fossilroom/wall_ledge.tscn" id="6_h86b0"]
 [ext_resource type="ArrayMesh" uid="uid://6tied0nu1ovb" path="res://Fossilroom/TwoHand_Sword_Gold.obj" id="7_00mxd"]
 
+[sub_resource type="Animation" id="Animation_0p6k5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(149.42, 23.4312, 11.7364)]
+}
+
 [sub_resource type="Animation" id="Animation_2xb2v"]
 resource_name = "backandforth"
 length = 20.0
@@ -25,7 +40,13 @@ tracks/0/keys = {
 "values": [Vector3(149.42, 23.4312, 11.7364), Vector3(149.42, 23.4312, 11.7364), Vector3(149.42, 23.4312, -104.794), Vector3(149.42, 23.4312, -104.794), Vector3(149.42, 23.4312, 12.0814), Vector3(149.42, 23.4312, 12.0814)]
 }
 
-[sub_resource type="Animation" id="Animation_0p6k5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jqoj"]
+_data = {
+"RESET": SubResource("Animation_0p6k5"),
+"backandforth": SubResource("Animation_2xb2v")
+}
+
+[sub_resource type="Animation" id="Animation_g5our"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -37,13 +58,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(149.42, 23.4312, 11.7364)]
+"values": [Vector3(119.613, 34.5454, -47.0335)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jqoj"]
-_data = {
-"RESET": SubResource("Animation_0p6k5"),
-"backandforth": SubResource("Animation_2xb2v")
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00902642, -1.5744, 0.0180082)]
 }
 
 [sub_resource type="Animation" id="Animation_r4t46"]
@@ -73,33 +100,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.0364977, -1.57441, 0.017909), Vector3(0.00902642, -1.5744, 0.0180082), Vector3(0.00902641, 0.28657, 0.0180082), Vector3(0.00902641, 1.99909, 0.0180082), Vector3(0.00902642, 1.46352, 0.0180082), Vector3(0.00902642, 1.46352, 0.0180082)]
-}
-
-[sub_resource type="Animation" id="Animation_g5our"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(119.613, 34.5454, -47.0335)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.00902642, -1.5744, 0.0180082)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vafjn"]
@@ -132,7 +132,7 @@ libraries = {
 autoplay = "backandforth"
 
 [node name="bird" parent="." instance=ExtResource("5_kifve")]
-transform = Transform3D(-0.00377033, -0.0089598, -0.999953, 0.0180065, 0.999797, -0.00902629, 0.999831, -0.0180396, -0.00360824, 119.613, 34.5454, -47.0335)
+transform = Transform3D(-0.00376557, -0.00895988, -0.999953, 0.0180065, 0.999797, -0.0090263, 0.999831, -0.0180396, -0.00360347, 119.613, 34.5454, -47.0335)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="bird"]
 libraries = {
