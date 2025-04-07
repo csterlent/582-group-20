@@ -28,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 0, -84)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, -2, -30)
 
 [node name="FossilRoom" parent="." instance=ExtResource("8_x833l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.4611, -76.7223, 114.219)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.0541, 1.26554, -80.8087)
 
 [node name="PhysicsManager" parent="." instance=ExtResource("9_q68tk")]
 

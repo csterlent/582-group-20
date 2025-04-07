@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://lshe1lg2pccd"]
+
+[ext_resource type="PackedScene" uid="uid://d0sqis6m678l0" path="res://models/fossilroom/bird.gltf" id="1_itfkh"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j7nc2"]
+points = PackedVector3Array(4.99922, 3, 3, -1.00078, 0.999217, 3.99961, -1.00078, -6.00078, 6, 6, 1.99961, 3, 4.99922, 3, 1.9998, -9.00078, 3, 3, -3.00078, 0.999217, 3.99961, -1.00078, -9.00059, 6, -3.00078, -6.00078, 6, 6, 1.99961, 1.9998, 6, -1.0002, 3, 0, 3, 0, -9.00078, 3, 1.9998, -10, 1.99961, 3, -1.00078, -11, 4.9998, -3.00078, -9.00059, 6, 6, -1.0002, 1.9998, 0, 0.999217, 0, -4, 3, 0, -10, 1.99961, 1.9998, -10, -1.0002, 3, -1.00078, -11, 3.99961, -3.00078, -11, 4.9998, 4, -3.00098, 1.9998, 2, -5.00039, 1.9998, -4, 0.999217, 0, -10, -1.0002, 1.9998, -3.00078, -11, 3.99961, -6, -5.00039, 1.9998, -7.00078, -4, 1.9998, -9.00078, -2.00059, 1.9998)
+
+[node name="bird" instance=ExtResource("1_itfkh")]
+
+[node name="StaticBody3D" type="RigidBody3D" parent="Node/Layer_1" index="0"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Node/Layer_1/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_j7nc2")
