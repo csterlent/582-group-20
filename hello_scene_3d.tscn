@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_7g65w"]
-[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://Fossilroom/player.tscn" id="4_qm4yq"]
+[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
 [ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://Fossilroom/lighting.tscn" id="5_dfwkr"]
 [ext_resource type="PackedScene" uid="uid://sojjawgos8cg" path="res://models/ancientGreece/ancient_greece.tscn" id="6_si3xx"]
 [ext_resource type="PackedScene" uid="uid://bl7eax7do3ce8" path="res://models/junction1/junction_1.tscn" id="7_2kdxf"]
@@ -80,12 +80,66 @@ size = 100.0
 layout_mode = 2
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 2
 script = ExtResource("11_xevbo")
 
-[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.462745)
 
-[node name="Label" type="Label" parent="PauseMenu/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 36.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="PauseLabelContainer" type="CenterContainer" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
+
+[node name="PausedLabel" type="Label" parent="PauseMenu/VBoxContainer/PauseLabelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "PAUSED"
+
+[node name="Control" type="Control" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResumeButtonContainer" type="CenterContainer" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer/ResumeButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "RESUME"
+
+[node name="SaveButtonContainer" type="CenterContainer" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="PauseMenu/VBoxContainer/SaveButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SAVE"
+
+[node name="QuitButtonContainer" type="CenterContainer" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="PauseMenu/VBoxContainer/QuitButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButtonContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/QuitButtonContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
