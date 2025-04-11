@@ -14,25 +14,22 @@ func _ready() -> void:
 	# Start by ensuring the pause menu is hidden
 	hide()
 
-func _process(delta: float) -> void:
-	# If the ESC button has been released since being pressed in the parent
-	# node (can_resume), and ESC is now pressed again, we resume the game
-	if can_resume && Input.is_action_just_pressed("ui_cancel"):
-		resume()
-		
-	# To ensure this instance doesn't also recognize the initial press of
-	# ESC we rely on can_resume
-	elif !can_resume && Input.is_action_just_released("ui_cancel"):
-		can_resume = true
-
 # Resume the game by hiding the pause menu and unpausing the parent node's tree
 func resume() -> void:
-	print(1)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	hide()
+	can_resume = true
 	node.get_tree().paused = false
 
 # Pause game by showing the menu and pausing the parent node's tree
 func pause() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	show()
 	can_resume = false
 	node.get_tree().paused = true
+
+func _on_resume_button_pressed() -> void:
+	resume()
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

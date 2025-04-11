@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rfld4j81xqxr"]
+[gd_scene load_steps=6 format=3 uid="uid://cbbuxpnkl6m17"]
 
 [sub_resource type="Gradient" id="Gradient_y6qix"]
 colors = PackedColorArray(0.0784314, 0.0784314, 0.0784314, 1, 0.470588, 0.470588, 0.470588, 1)
@@ -24,7 +24,7 @@ tonemap_mode = 2
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0001
 
-[node name="Lighting" type="Node3D"]
+[node name="Lighting2" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.869607, -0.270313, 0.413176, -0.492404, -0.413176, 0.766044, -0.0363574, -0.869607, -0.492404, 32, 0, -32)
