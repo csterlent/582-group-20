@@ -1,12 +1,13 @@
-[gd_scene load_steps=20 format=4 uid="uid://y5hw1rvfs1f6"]
+[gd_scene load_steps=21 format=4 uid="uid://y5hw1rvfs1f6"]
 
 [ext_resource type="PackedScene" uid="uid://dvwvn2hcbqmn6" path="res://models/fossilroom/fossilroom.tscn" id="1_ojd8g"]
 [ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="2_k70dp"]
 [ext_resource type="PackedScene" uid="uid://con8pj5awhfli" path="res://models/fossilroom/movingplat.tscn" id="4_dmc63"]
 [ext_resource type="PackedScene" uid="uid://5vddgwtq6veb" path="res://models/fossilroom/wall_ledge.tscn" id="6_h86b0"]
 [ext_resource type="ArrayMesh" uid="uid://6tied0nu1ovb" path="res://Fossilroom/TwoHand_Sword_Gold.obj" id="7_00mxd"]
+[ext_resource type="PackedScene" uid="uid://crdis3gbo0xol" path="res://Fossilroom/betterroof.tscn" id="7_iifyg"]
 [ext_resource type="Texture2D" uid="uid://c7lud76pgjgu8" path="res://models/fossilroom/bird_0.png" id="8_p8dcj"]
-[ext_resource type="PackedScene" uid="uid://bb3otbpb6hf8j" path="res://Fossilroom/roof.tscn" id="8_yk41x"]
+[ext_resource type="PackedScene" uid="uid://d1b6xdri0r20a" path="res://Fossilroom/sword.tscn" id="8_px4un"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2q70g"]
 
@@ -161,6 +162,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.4611, -44.0446, 114.219)
 [node name="StaticBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.033, 9.30942, -0.111221)
 disable_mode = 2
+collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_2q70g")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
@@ -171,6 +173,7 @@ mesh = ExtResource("7_00mxd")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D2" type="Area3D" parent="StaticBody3D"]
+transform = Transform3D(0.995198, 0.0586652, 0.0783495, -0.0580313, 0.998261, -0.010345, -0.0788202, 0.0057486, 0.996872, 0, 0, 0)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D/MeshInstance3D2"]
 shape = SubResource("ConvexPolygonShape3D_qm27d")
@@ -217,11 +220,8 @@ transform = Transform3D(0.999956, -0.00852564, 0.00393545, 0.00853347, 0.999962,
 [node name="CharacterBody3D11" parent="." instance=ExtResource("6_h86b0")]
 transform = Transform3D(0.999956, -0.00852564, 0.00393545, 0.00853347, 0.999962, -0.00197566, -0.00391846, 0.00200915, 0.99999, 52.9232, 36.0077, -71.3483)
 
-[node name="roof" parent="." instance=ExtResource("8_yk41x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0664, 49.8305, 0)
-
 [node name="Layer_1" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.07278, 0.997263, -0.0129507, -0.00281433, 0.0127797, 0.999914, 0.997343, 0.0728102, 0.00187652, 137.022, 31.1412, -66.196)
+transform = Transform3D(-0.07278, 0.997263, -0.0129507, -0.00281432, 0.0127797, 0.999914, 0.997343, 0.0728102, 0.00187652, 137.022, 31.1412, -66.196)
 mesh = SubResource("ArrayMesh_388li")
 skeleton = NodePath("")
 
@@ -235,3 +235,9 @@ libraries = {
 "": SubResource("AnimationLibrary_imm1c")
 }
 autoplay = "RESET"
+
+[node name="roof" parent="." instance=ExtResource("7_iifyg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2117, 50.0089, 0.0901184)
+
+[node name="Sword" parent="." instance=ExtResource("8_px4un")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.43442, 12.3483, -46.8005)
