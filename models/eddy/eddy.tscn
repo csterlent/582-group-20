@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyc5p3bwxfwco"]
+
+[ext_resource type="PackedScene" uid="uid://vww32hw2ujes" path="res://models/eddy/eddy.gltf" id="1_futwp"]
+[ext_resource type="Script" path="res://models/eddy/eddy.gd" id="2_dbo64"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="eddy" parent="." instance=ExtResource("1_futwp")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 14, -13, 0)
+script = ExtResource("2_dbo64")
