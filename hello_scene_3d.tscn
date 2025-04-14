@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=15 format=3 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_7g65w"]
 [ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://df4kgpsihpc54" path="res://teardrop.png" id="9_p8ucn"]
 [ext_resource type="PackedScene" uid="uid://cvk3i5rpjy6pc" path="res://physics_manager.tscn" id="9_q68tk"]
 [ext_resource type="Script" path="res://pause_menu.gd" id="11_xevbo"]
+[ext_resource type="PackedScene" uid="uid://cq5vwq4cd86yl" path="res://Fossilroom/fossil_hallway.tscn" id="13_2d24o"]
+[ext_resource type="AudioStream" uid="uid://jw2c6mjmlvxo" path="res://escape rd.mp3" id="14_hk5sd"]
 
 [node name="Scene" type="Node3D"]
 script = ExtResource("1_7g65w")
@@ -28,7 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 0, -84)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, -2, -30)
 
 [node name="FossilRoom" parent="." instance=ExtResource("8_x833l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.0541, 1.26554, -80.8087)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 53.3946, -0.118287, -144.853)
 
 [node name="PhysicsManager" parent="." instance=ExtResource("9_q68tk")]
 
@@ -89,3 +91,12 @@ offset_bottom = 40.0
 [node name="Label" type="Label" parent="PauseMenu/CenterContainer"]
 layout_mode = 2
 text = "PAUSED"
+
+[node name="fossilHallway" parent="." instance=ExtResource("13_2d24o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 53.1287, 0.0136199, 44.3807)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_hk5sd")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true

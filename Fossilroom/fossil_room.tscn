@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://y5hw1rvfs1f6"]
+[gd_scene load_steps=22 format=4 uid="uid://y5hw1rvfs1f6"]
 
 [ext_resource type="PackedScene" uid="uid://dvwvn2hcbqmn6" path="res://models/fossilroom/fossilroom.tscn" id="1_ojd8g"]
 [ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="2_k70dp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://crdis3gbo0xol" path="res://Fossilroom/betterroof.tscn" id="7_iifyg"]
 [ext_resource type="Texture2D" uid="uid://c7lud76pgjgu8" path="res://models/fossilroom/bird_0.png" id="8_p8dcj"]
 [ext_resource type="PackedScene" uid="uid://d1b6xdri0r20a" path="res://Fossilroom/sword.tscn" id="8_px4un"]
+[ext_resource type="PackedScene" uid="uid://cua1uo0mll6d7" path="res://Fossilroom/fossil_table.tscn" id="9_wu3e5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2q70g"]
 
@@ -233,7 +234,7 @@ transform = Transform3D(0.999956, -0.00852564, 0.00393545, 0.00853347, 0.999962,
 transform = Transform3D(0.999956, -0.00852564, 0.00393545, 0.00853347, 0.999962, -0.00197566, -0.00391846, 0.00200915, 0.99999, 52.9232, 36.0077, -71.3483)
 
 [node name="Layer_1" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.07278, 0.997263, -0.0129506, -0.00281432, 0.0127797, 0.999914, 0.997343, 0.0728102, 0.00187652, 137.022, 31.1412, -66.196)
+transform = Transform3D(-0.07278, 0.997263, -0.0129507, -0.00281432, 0.0127797, 0.999914, 0.997343, 0.0728102, 0.00187652, 137.022, 31.1412, -66.196)
 mesh = SubResource("ArrayMesh_388li")
 skeleton = NodePath("")
 
@@ -253,3 +254,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2117, 50.0089, 0.0901184)
 
 [node name="Sword" parent="." instance=ExtResource("8_px4un")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.43442, 12.3483, -46.8005)
+
+[node name="fossil_table" parent="." instance=ExtResource("9_wu3e5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 52.2649, 0, -27.0968)
+
+[node name="fossil_table2" parent="." instance=ExtResource("9_wu3e5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 76.2796, 0, -27.0968)
