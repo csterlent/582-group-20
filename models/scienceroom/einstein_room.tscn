@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://c8fxn70vbjy6f"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pvmn1"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x2dvn"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_aqf5q"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qmyln"]
+
+[sub_resource type="Animation" id="Animation_tdg2s"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -42, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yeuhv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5qvdk"]
+_data = {
+"RESET": SubResource("Animation_yeuhv"),
+"new_animation": SubResource("Animation_tdg2s")
+}
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t2njq"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yjjda"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5mj16"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3pwia"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xf4l7"]
+
+[node name="einstein_room"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/base" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/base/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_pvmn1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/desk" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/desk/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_x2dvn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/side room" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/side room/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_aqf5q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/bookshelf" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/bookshelf/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_qmyln")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node/bookshelf" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_5qvdk")
+}
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/doorway" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/doorway/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_t2njq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/button" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/button/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_yjjda")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/magic book" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/magic book/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_5mj16")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/instructions letter" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/instructions letter/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_3pwia")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node/chalk" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/chalk/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_xf4l7")
