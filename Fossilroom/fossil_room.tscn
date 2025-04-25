@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://y5hw1rvfs1f6"]
+[gd_scene load_steps=23 format=4 uid="uid://y5hw1rvfs1f6"]
 
 [ext_resource type="PackedScene" uid="uid://dvwvn2hcbqmn6" path="res://models/fossilroom/fossilroom.tscn" id="1_ojd8g"]
 [ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="2_k70dp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c7lud76pgjgu8" path="res://models/fossilroom/bird_0.png" id="8_p8dcj"]
 [ext_resource type="PackedScene" uid="uid://d1b6xdri0r20a" path="res://Fossilroom/sword.tscn" id="8_px4un"]
 [ext_resource type="PackedScene" uid="uid://cua1uo0mll6d7" path="res://Fossilroom/fossil_table.tscn" id="9_wu3e5"]
+[ext_resource type="PackedScene" uid="uid://dyc5p3bwxfwco" path="res://models/eddy/eddy.tscn" id="10_wqog2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2q70g"]
 
@@ -260,3 +261,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 52.264
 
 [node name="fossil_table2" parent="." instance=ExtResource("9_wu3e5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 76.2796, 0, -27.0968)
+
+[node name="Node3D" parent="." instance=ExtResource("10_wqog2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.28569, 26.2909, 14.0054)
