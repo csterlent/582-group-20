@@ -2,23 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://cvoi3w20ncj3v"
-=======
-uid="uid://b5j1wlr1kobkm"
->>>>>>> 95d9a02 (Eddy NPC)
+uid="uid://bu7gft8ddbg7r"
 path.s3tc="res://.godot/imported/roof_0.png-b668ca15ce883dec4b78c26f27f3fb80.s3tc.ctex"
 path.etc2="res://.godot/imported/roof_0.png-b668ca15ce883dec4b78c26f27f3fb80.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
-}
-generator_parameters={
-<<<<<<< HEAD
-"md5": "9eb5c041b706da7570c7877558310c6c"
-=======
-"md5": "1d5f8a92cf29845a8286c903ff090e34"
->>>>>>> 95d9a02 (Eddy NPC)
 }
 
 [deps]
