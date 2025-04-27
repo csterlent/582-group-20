@@ -68,6 +68,7 @@ func handle_grab_object(object: Node3D, context):
 		right_grab_controller.grab_object(object)
 	else: 
 		left_grab_controller.grab_object(object)
+
 		
 func is_holding_object(context) -> bool:
 	if context == PlayerInputController.HAND.RIGHT:  

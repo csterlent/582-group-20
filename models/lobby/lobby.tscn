@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c1aaf6moctlg6" path="res://models/lobby/lobby.gltf" id="1_pgfq5"]
 [ext_resource type="Material" uid="uid://2qexsvo1vncf" path="res://models/tower/glass.tres" id="3_2j7bp"]
 [ext_resource type="Script" path="res://models/lobby/turnstile.gd" id="3_4xbh6"]
-[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://Fossilroom/lighting.tscn" id="3_85b7x"]
+[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="3_85b7x"]
 [ext_resource type="Script" path="res://models/lobby/doorhandles.gd" id="4_7nwml"]
 [ext_resource type="Texture2D" uid="uid://cvie2ba3o1s18" path="res://models/lobby/lobby_swing_0.png" id="4_jwk44"]
 [ext_resource type="Script" path="res://models/lobby/swing_door.gd" id="6_rywaq"]
