@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=4 uid="uid://y5hw1rvfs1f6"]
 
 [ext_resource type="PackedScene" uid="uid://dvwvn2hcbqmn6" path="res://models/fossilroom/fossilroom.tscn" id="1_ojd8g"]
-[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="2_k70dp"]
+[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://Fossilroom/lighting.tscn" id="2_k70dp"]
 [ext_resource type="PackedScene" uid="uid://con8pj5awhfli" path="res://models/fossilroom/movingplat.tscn" id="4_dmc63"]
 [ext_resource type="PackedScene" uid="uid://5vddgwtq6veb" path="res://models/fossilroom/wall_ledge.tscn" id="6_h86b0"]
 [ext_resource type="ArrayMesh" uid="uid://6tied0nu1ovb" path="res://Fossilroom/TwoHand_Sword_Gold.obj" id="7_00mxd"]

@@ -771,7 +771,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5979, 10.3929, -3.45267)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, -2, -30)
 
 [node name="FossilRoom" parent="." instance=ExtResource("8_x833l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.4611, -76.7223, 114.219)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18, 0.2, -210.794)
 
 [node name="Courtyard" type="Node3D" parent="."]
 
@@ -906,7 +906,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_kjm88")
 
 [node name="Bush_2" type="MeshInstance3D" parent="Courtyard/Courtyard"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.8186, -12.0405, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -14.6062, 0)
 mesh = SubResource("ArrayMesh_etggt")
 skeleton = NodePath("")
 
@@ -1126,7 +1126,7 @@ shape = SubResource("ConcavePolygonShape3D_y1xw8")
 [node name="Wall" type="Node3D" parent="Courtyard/Courtyard"]
 
 [node name="Bush_3" type="MeshInstance3D" parent="Courtyard/Courtyard/Wall"]
-transform = Transform3D(11.293, 0, 0, 5.68434e-14, 1, 0, 0, 0, 2.23299, -90.558, -7.33566, -1.98876)
+transform = Transform3D(9.13528, 0, 0, 0, 1, 0, 0, 0, 2.23299, -61.0288, -7.33566, -1.98876)
 mesh = SubResource("ArrayMesh_bduhy")
 skeleton = NodePath("")
 
@@ -1672,6 +1672,16 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Courtyard/Courtyard/Acorn_10"]
 shape = SubResource("ConvexPolygonShape3D_s7xj0")
+
+[node name="Bars2" type="MeshInstance3D" parent="Courtyard/Courtyard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.7248, 8.31818, 0)
+mesh = SubResource("ArrayMesh_m1vqo")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Courtyard/Courtyard/Bars2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Courtyard/Courtyard/Bars2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_i0n0j")
 
 [node name="PhysicsManager" parent="." instance=ExtResource("9_q68tk")]
 
