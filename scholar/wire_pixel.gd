@@ -18,15 +18,19 @@ func _ready() -> void:
 	
 # Signal handler for when a body enters the area
 func _on_body_entered(body):
-	if blockable:
+	if body.name == "PlayerBody" and body.global_position.y < 10:
+		get_parent().lock_door()
+	if blockable and body is RigidBody3D:
 		blocked = true
 		update()
 
 # Signal handler for when a body exits the area
 func _on_body_exited(body):
 	if blockable:
-		if get_overlapping_bodies().size() == 0:
-			blocked = false
+		blocked = false
+		for obj in get_overlapping_bodies():
+			if obj is RigidBody3D:
+				blocked = true
 		update()
 
 func set_as_root():
@@ -42,7 +46,10 @@ func update():
 	for pix in allofus:
 		pix.get_node("MeshInstance3D").visible = pix.active
 
-	holder.get_parent().get_node("Painting").visible = !last.active
+	if last.active:
+		holder.now_solved()
+	else:
+		holder.now_unsolved()
 
 func spread():
 	if !blocked:

@@ -16,17 +16,23 @@ func sound(hand):
 
 var x = 0
 
+func is_open():
+	for obj in area.get_overlapping_bodies():
+		if obj.collision_mask == 5:
+			return true
+	return false
+
 @onready var pos = position
-@onready var body = get_parent().get_parent().get_node("TestTicket")
+@onready var area = get_parent().get_parent().get_node("TicketDetector")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (Vector3(31.5, 12, -10.5) - body.global_position).length() < 2:
+	if is_open():
 		if x == 0:
-			sound(body)
+			sound(area)
 		x += 0.04
 	else:
 		if x == 3:
-			sound(body)
+			sound(area)
 		x -= 0.1
 	if (x < 0):
 		x = 0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://jw2c6mjmlvxo"
+path="res://.godot/imported/escape rd.mp3-c636854aa783276270a7e0e4c9ebad17.mp3str"
+
+[deps]
+
+source_file="res://escape rd.mp3"
+dest_files=["res://.godot/imported/escape rd.mp3-c636854aa783276270a7e0e4c9ebad17.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
