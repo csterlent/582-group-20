@@ -23,6 +23,10 @@ window/size/mode=2
 
 project/assembly_name="project escape VR"
 
+[global_group]
+
+breakable="anything that can be broken with the hammer."
+
 [input]
 
 move_forward={

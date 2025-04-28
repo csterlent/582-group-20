@@ -128,12 +128,20 @@ eddie: im sorry, im sorry,  I fooled you. it was wrong of me.
 
 eddie: hey can you hear me, dont ignore me
 
+## hints 
+*finding different floweres around courtyard to find the passcode for the code in the tree*
+
+eddie: calm down, you really should chill out. stop and smell the roses. 
+
+eddie: 
+
 #### after the puzzle is solved
 eddie: no leave that here, you dont need that, seriously, hands off the watering pale. 
 
 eddie: okay im not joking anymore, your gonna make me angry
 
-eddie: fine play it that way,  no more mister nice guy
+evil eddie: fine play it that way,  no more mister nice eddie
+
 
 ## Escape from the fossil room
 
