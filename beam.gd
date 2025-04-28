@@ -8,7 +8,7 @@ func _ready() -> void:
 	for i in range(len(locs)):
 		var x = MeshInstance3D.new()
 		x.mesh = CylinderMesh.new()
-		x.mesh.bottom_radius = 0.5
+		x.mesh.bottom_radius = 0.01
 		x.mesh.cap_bottom = true 
 		x.mesh.cap_top = true
 		var cur:Node3D = get_node(locs[i])
