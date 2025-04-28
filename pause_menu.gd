@@ -43,6 +43,10 @@ func _on_save_button_pressed() -> void:
 
 	# Ensure that the player exists
 	if player:
+		#var packed_scene = PackedScene.new()
+
+		# Pack the player node into the PackedScene (this saves only the player, not the entire scene)
+		
 		# Create a dictionary to store the player’s transform (position, rotation, scale)
 		var save_data = {
 			"player_position": player.global_position,  # Save position 
