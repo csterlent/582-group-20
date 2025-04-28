@@ -1,9 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://cqwo516yaiwkb"]
+[gd_scene load_steps=34 format=3 uid="uid://cqwo516yaiwkb"]
 
 [ext_resource type="PackedScene" uid="uid://b6elqulfygon3" path="res://models/scienceroom/study.gltf" id="1_l5h02"]
 [ext_resource type="PackedScene" uid="uid://clnts5rt0o0u1" path="res://models/scienceroom/chalk.gltf" id="2_1ylr4"]
 [ext_resource type="Script" path="res://models/scienceroom/button.gd" id="2_6vwfm"]
-[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="3_32uu2"]
 [ext_resource type="Script" path="res://models/scienceroom/instructions.gd" id="3_e8wdh"]
 [ext_resource type="PackedScene" uid="uid://cvk3i5rpjy6pc" path="res://physics_manager.tscn" id="4_17hx3"]
 [ext_resource type="PackedScene" uid="uid://cjmandgjriiqg" path="res://models/scienceroom/letter.gltf" id="4_tivsn"]
@@ -312,6 +311,3 @@ shape = SubResource("BoxShape3D_f8q0h")
 
 [node name="Lighting" parent="." index="2" instance=ExtResource("6_0tg47")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1464, 11.862, -28)
-
-[node name="Player" parent="." index="3" instance=ExtResource("3_32uu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4964, 10.3929, -3.45267)

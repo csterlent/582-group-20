@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bjm0bd6n1k67x" path="res://ancient_greece_2.tscn" id="13_1nlcx"]
 [ext_resource type="PackedScene" uid="uid://dyc5p3bwxfwco" path="res://models/eddy/eddy.tscn" id="13_slqhk"]
 [ext_resource type="AudioStream" uid="uid://bq0ld6ho5d12q" path="res://ESCAPE BOUNCE 4_22_25.mp3" id="14_gqyyf"]
+[ext_resource type="PackedScene" uid="uid://cqwo516yaiwkb" path="res://models/scienceroom/study.tscn" id="15_08y0n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vipp0"]
 resource_name = "Material.1"
@@ -1797,6 +1798,9 @@ stream = ExtResource("14_gqyyf")
 volume_db = -6.0
 autoplay = true
 parameters/looping = true
+
+[node name="study" parent="." instance=ExtResource("15_08y0n")]
+transform = Transform3D(-0.0221639, 0, 0.999754, 0, 1, 0, -0.999754, 0, -0.0221639, -108.564, -2.57072, -68.2055)
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButtonContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/QuitButtonContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
