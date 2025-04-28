@@ -1,41 +1,44 @@
-[gd_scene load_steps=15 format=3 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=17 format=3]
 
-[ext_resource type="Script" path="res://main_scene.gd" id="1_7g65w"]
-[ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
-[ext_resource type="PackedScene" uid="uid://rfld4j81xqxr" path="res://lighting.tscn" id="5_dfwkr"]
-[ext_resource type="PackedScene" uid="uid://bl7eax7do3ce8" path="res://models/junction1/junction_1.tscn" id="7_2kdxf"]
-[ext_resource type="PackedScene" uid="uid://dtxn5rfkn4acn" path="res://scholar/scholar.tscn" id="8_318m4"]
-[ext_resource type="PackedScene" uid="uid://dj86t1wq53882" path="res://models/lobby/lobby.tscn" id="8_u5nwh"]
-[ext_resource type="PackedScene" uid="uid://y5hw1rvfs1f6" path="res://Fossilroom/fossil_room.tscn" id="8_x833l"]
-[ext_resource type="Script" path="res://sub_viewport_container.gd" id="9_0vvds"]
-[ext_resource type="Texture2D" uid="uid://df4kgpsihpc54" path="res://teardrop.png" id="9_p8ucn"]
-[ext_resource type="PackedScene" uid="uid://cvk3i5rpjy6pc" path="res://physics_manager.tscn" id="9_q68tk"]
-[ext_resource type="Script" path="res://pause_menu.gd" id="11_xevbo"]
-[ext_resource type="PackedScene" path="res://ancient_greece_2.tscn" id="13_1nlcx"]
-[ext_resource type="PackedScene" uid="uid://dyc5p3bwxfwco" path="res://models/eddy/eddy.tscn" id="13_slqhk"]
-[ext_resource type="AudioStream" uid="uid://bq0ld6ho5d12q" path="res://ESCAPE BOUNCE 4_22_25.mp3" id="14_gqyyf"]
+[ext_resource type="Script" path="res://main_scene.gd" id="1_arkwm"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="2_oc5gw"]
+[ext_resource type="Script" path="res://player.gd" id="3_wuooh"]
+[ext_resource type="PackedScene" path="res://lighting.tscn" id="4_141ti"]
+[ext_resource type="PackedScene" path="res://scholar/scholar.tscn" id="5_k2wwh"]
+[ext_resource type="PackedScene" path="res://Fossilroom/fossil_room.tscn" id="6_j6e0b"]
+[ext_resource type="PackedScene" path="res://physics_manager.tscn" id="7_hipc6"]
+[ext_resource type="Script" path="res://physics_manager.gd" id="8_50r0p"]
+[ext_resource type="PackedScene" path="res://models/junction1/junction_1.tscn" id="9_es3k5"]
+[ext_resource type="PackedScene" path="res://models/lobby/lobby.tscn" id="10_x3e43"]
+[ext_resource type="Texture2D" path="res://teardrop.png" id="11_ssgoo"]
+[ext_resource type="Script" path="res://sub_viewport_container.gd" id="12_ttqoh"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="13_gol5d"]
+[ext_resource type="PackedScene" path="res://models/eddy/eddy.tscn" id="14_3oyuu"]
+[ext_resource type="PackedScene" path="res://ancient_greece_2.tscn" id="15_n4kk3"]
+[ext_resource type="AudioStream" path="res://ESCAPE BOUNCE 4_22_25.mp3" id="16_e56e4"]
 
 [node name="Scene" type="Node3D"]
-script = ExtResource("1_7g65w")
+script = ExtResource("1_arkwm")
 
-[node name="Player" parent="." instance=ExtResource("4_qm4yq")]
+[node name="Player" type="Node3D" parent="." instance=ExtResource("2_oc5gw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5979, 10.3929, -3.45267)
-top_level = true
+script = ExtResource("3_wuooh")
 
-[node name="Lighting" parent="." instance=ExtResource("5_dfwkr")]
+[node name="Lighting" type="Node3D" parent="." instance=ExtResource("4_141ti")]
 
-[node name="Scholar" parent="." instance=ExtResource("8_318m4")]
+[node name="Scholar" type="Node3D" parent="." instance=ExtResource("5_k2wwh")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, -2, -30)
 
-[node name="FossilRoom" parent="." instance=ExtResource("8_x833l")]
+[node name="FossilRoom" type="Node3D" parent="." instance=ExtResource("6_j6e0b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.4611, -76.7223, 114.219)
 
-[node name="PhysicsManager" parent="." instance=ExtResource("9_q68tk")]
+[node name="PhysicsManager" type="Node3D" parent="." instance=ExtResource("7_hipc6")]
+script = ExtResource("8_50r0p")
 
-[node name="junction1" parent="." instance=ExtResource("7_2kdxf")]
+[node name="junction1" type="Node3D" parent="." instance=ExtResource("9_es3k5")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, -79)
 
-[node name="lobby" parent="." instance=ExtResource("8_u5nwh")]
+[node name="lobby" type="Node3D" parent="." instance=ExtResource("10_x3e43")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 54, 0, 51)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -49,12 +52,12 @@ offset_top = -200.0
 offset_right = 164.0
 offset_bottom = 312.0
 grow_horizontal = 0
-rotation = 1.41023
+rotation = -2.804
 scale = Vector2(0.1, 0.1)
 pivot_offset = Vector2(256, 300)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("9_p8ucn")
+texture = ExtResource("11_ssgoo")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 1
@@ -63,7 +66,7 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
-script = ExtResource("9_0vvds")
+script = ExtResource("12_ttqoh")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
@@ -71,9 +74,10 @@ size = Vector2i(200, 200)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 81.6331, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 30.5979, 81.6331, -3.45267)
 cull_mask = 1048573
 projection = 1
+current = true
 size = 100.0
 
 [node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer"]
@@ -81,7 +85,7 @@ layout_mode = 2
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 2
-script = ExtResource("11_xevbo")
+script = ExtResource("13_gol5d")
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu"]
 anchors_preset = 15
@@ -131,6 +135,7 @@ layout_mode = 2
 [node name="SaveButton" type="Button" parent="PauseMenu/VBoxContainer/SaveButtonContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+button_pressed = true
 text = "SAVE"
 
 [node name="QuitButtonContainer" type="CenterContainer" parent="PauseMenu/VBoxContainer"]
@@ -149,16 +154,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "LOAD"
 
-[node name="Eddy" parent="." instance=ExtResource("13_slqhk")]
+[node name="Eddy" type="Node3D" parent="." instance=ExtResource("14_3oyuu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 17, -12)
 
-[node name="ancientGreece2" parent="." instance=ExtResource("13_1nlcx")]
+[node name="ancientGreece2" type="Node3D" parent="." instance=ExtResource("15_n4kk3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.9625, 0.0105002, -83.5291)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_gqyyf")
+stream = ExtResource("16_e56e4")
 volume_db = -6.0
 autoplay = true
+stream_paused = true
 parameters/looping = true
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButtonContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
