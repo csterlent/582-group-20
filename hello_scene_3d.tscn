@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://cpprydr1rpo8s"]
+[gd_scene load_steps=79 format=4 uid="uid://cpprydr1rpo8s"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_7g65w"]
 [ext_resource type="PackedScene" uid="uid://d3m1n07whd2tc" path="res://player.tscn" id="4_qm4yq"]
@@ -1003,13 +1003,10 @@ shape = SubResource("ConcavePolygonShape3D_c6kh1")
 
 [node name="Bars" type="MeshInstance3D" parent="Courtyard/Courtyard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.70517, 8.31818, 0)
-layers = 2
 mesh = SubResource("ArrayMesh_m1vqo")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Courtyard/Courtyard/Bars"]
-collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Courtyard/Courtyard/Bars/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_i0n0j")
