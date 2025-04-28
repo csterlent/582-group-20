@@ -1807,7 +1807,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="study" parent="." instance=ExtResource("15_08y0n")]
-transform = Transform3D(-0.0221639, 0, 0.999754, 0, 1, 0, -0.999754, 0, -0.0221639, -108.564, -2.57072, -68.2055)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -231.863, 32.6157, -157.266)
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButtonContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/QuitButtonContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
