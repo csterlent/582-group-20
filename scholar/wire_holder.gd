@@ -29,7 +29,7 @@ const branch = [
 	[Vector3(-1, 18, -17), Vector3(-11, 18, -17)],
 	[Vector3(-11, 19, -17), Vector3(-16, 19, -17)],
 	[Vector3(-17, 19, -17), Vector3(-17, 17, -17)],
-	[Vector3(-17, -3, -17), Vector3(-17, -8, -17)],
+	[Vector3(-17, -2, -17), Vector3(-17, -8, -17)],
 	[Vector3(-17, -9, -16), Vector3(-17, -9, -8)],
 	[Vector3(-16, -9, -8), Vector3(-4, -9, -8)],
 ]
@@ -67,6 +67,23 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+var unlocked = true
+func lock_door():
+	unlocked = false
+	if not Globals.lit:
+		get_parent().get_node("Painting1/StaticBody3D").collision_layer = 1
+
+func now_solved():
+	Globals.lit = true
+	get_parent().get_node("Painting").visible = false
+	get_parent().get_node("Painting1/StaticBody3D").collision_layer = 0
+
+func now_unsolved():
+	Globals.lit = false
+	get_parent().get_node("Painting").visible = true
+	if not unlocked:
+		get_parent().get_node("Painting1/StaticBody3D").collision_layer = 1
 
 var scene = load("res://scholar/wire_pixel.tscn")
 func trace(pair, prev):
