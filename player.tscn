@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3m1n07whd2tc"]
+[gd_scene load_steps=12 format=3 uid="uid://d3m1n07whd2tc"]
 
 [ext_resource type="Script" path="res://controller.gd" id="1_ijpxa"]
 [ext_resource type="Script" path="res://player.gd" id="1_uporl"]
 [ext_resource type="PackedScene" uid="uid://l8vhaettc2ns" path="res://vr_base.tscn" id="3_atccx"]
 [ext_resource type="PackedScene" uid="uid://up4obg4jo3ve" path="res://player_input_controller.tscn" id="3_sst4p"]
 [ext_resource type="Script" path="res://grab_controller.gd" id="5_78jx3"]
+[ext_resource type="PackedScene" uid="uid://cvk3i5rpjy6pc" path="res://physics_manager.tscn" id="6_oudpk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7cox"]
 size = Vector3(4, 16, 4)
@@ -73,3 +74,5 @@ volume_db = -10.477
 
 [node name="GrabController" type="Node3D" parent="."]
 script = ExtResource("5_78jx3")
+
+[node name="PhysicsManager" parent="." instance=ExtResource("6_oudpk")]
