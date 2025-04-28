@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bq0ld6ho5d12q"
+path="res://.godot/imported/ESCAPE BOUNCE 4_22_25.mp3-eb05bffe2a1cd8d4d471c5dcf5104ba3.mp3str"
+
+[deps]
+
+source_file="res://ESCAPE BOUNCE 4_22_25.mp3"
+dest_files=["res://.godot/imported/ESCAPE BOUNCE 4_22_25.mp3-eb05bffe2a1cd8d4d471c5dcf5104ba3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
